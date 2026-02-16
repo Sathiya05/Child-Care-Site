@@ -1,0 +1,596 @@
+ <!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child DayCare</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+          <link rel="icon" href="growwpark_logo.jpg">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+                     <script>
+    tailwind.config = {
+      darkMode: "class",
+    };
+  </script>
+</head>
+
+
+    <!-- Tailwind config: DARKMODE = class -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pink: {
+                            600: '#db2777',
+                            700: '#be185d',
+                        }
+                    },
+                    fontFamily: {
+                        'nunito': ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- DARK MODE INIT: respect localStorage or system preference -->
+    <script>
+        (function() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+            }
+        })();
+    </script>
+
+    <style>
+        /* base + custom dark overrides */
+        body {
+            font-family: 'Nunito', 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.2s ease;
+        }
+        /* custom pink utilities (also defined for dark) */
+        .bg-pink-600 { background-color: #db2777; }
+        .text-pink-600 { color: #db2777; }
+        .border-pink-600 { border-color: #db2777; }
+        .hover-bg-pink-700:hover { background-color: #be185d; }
+        .ring-pink-600:focus { --tw-ring-color: #db2777; }
+
+        /* DARK mode overrides for custom bg/text */
+        .dark .bg-pink-600 { background-color: #ec4899; }
+        .dark .text-pink-600 { color: #f472b6; }
+        .dark .border-pink-600 { border-color: #f472b6; }
+        .dark .bg-pink-50 { background-color: #2a1e28; }
+        .dark .bg-pink-100 { background-color: #3b2632; }
+        .dark .text-pink-700 { color: #f9a8d4; }
+        .dark .border-pink-100 { border-color: #5e3a4a; }
+        .dark .border-pink-200 { border-color: #6b4a5a; }
+        .dark .bg-pink-600\/10 { background-color: rgba(236, 72, 153, 0.15); }
+        .dark .bg-pink-600\/20 { background-color: rgba(236, 72, 153, 0.2); }
+
+        /* dark default backgrounds & text */
+        .dark body { background-color: #18141c; }
+        .dark .bg-white { background-color: #1f1b26; }
+        .dark .bg-gray-50 { background-color: #262230; }
+        .dark .text-gray-800 { color: #f1f5f9; }
+        .dark .text-gray-700 { color: #e2e8f0; }
+        .dark .text-gray-600 { color: #cbd5e1; }
+        .dark .text-gray-500 { color: #9ca3af; }
+        .dark .border-white { border-color: #2d2a3a; }
+        .dark .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); }
+        .dark .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
+
+        /* service card animations */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 40px -15px rgba(219, 39, 119, 0.25);
+        }
+        .dark .service-card:hover {
+            box-shadow: 0 30px 40px -15px rgba(244, 114, 182, 0.25);
+        }
+
+        /* floating */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .float { animation: float 4s ease-in-out infinite; }
+
+        /* custom badge */
+        .age-badge {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 100%);
+            border: 1px solid #f9a8d4;
+        }
+        .dark .age-badge {
+            background: #332a38;
+            border-color: #6b4a5a;
+        }
+
+        /* force equal height cards with flex */
+        .program-card-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: stretch;
+        }
+        @media (min-width: 640px) {
+            .grid-cards { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .grid-cards { grid-template-columns: repeat(4, 1fr); }
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-pink-50 dark:bg-[#18141c] transition-colors duration-300">
+  <!-- navbar -->
+    <div id="navbar"></div>
+
+    <!-- ========== HERO BANNER (unique, pink-600 theme, dark adapted) ========== -->
+    <section class="relative bg-gradient-to-r from-pink-500 via-pink-600 to-pink-700 dark:from-pink-700 dark:via-pink-800 dark:to-pink-900 overflow-hidden">
+        <!-- playful background elements -->
+        <div class="absolute inset-0 opacity-10 dark:opacity-20">
+            <i class="fas fa-cloud absolute text-white text-7xl top-10 left-10 float"></i>
+            <i class="fas fa-balloon absolute text-white text-6xl bottom-10 right-20" style="animation-delay: 1s;"></i>
+            <i class="fas fa-star absolute text-white text-5xl top-20 right-40" style="animation-delay: 0.5s;"></i>
+            <i class="fas fa-heart absolute text-white text-7xl bottom-20 left-20" style="animation-delay: 1.5s;"></i>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- left hero content -->
+                <div class="flex-1 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2 text-white border border-white/30 mb-6">
+                        <i class="fas fa-regular fa-heart text-lg"></i>
+                        <span class="text-sm font-medium">Nurturing since 2018</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                        Our care programs
+                        <span class="relative block mt-2">
+                            for every little dreamer
+                        </span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-pink-50 dark:text-pink-100 mt-8 max-w-2xl lg:mx-0 mx-auto">
+                        From infant care to preschool, we provide a safe, loving, and educational environment where children thrive at every stage.
+                    </p>
+                    
+                    <!-- trust badges -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-10">
+                        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/20 dark:bg-black/30">
+                            <i class="fas fa-shield-heart text-white"></i>
+                            <span class="text-white text-sm font-medium">Licensed</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/20 dark:bg-black/30">
+                            <i class="fas fa-star text-white"></i>
+                            <span class="text-white text-sm font-medium">4.9 ★ (200+ reviews)</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/20 dark:bg-black/30">
+                            <i class="fas fa-people-group text-white"></i>
+                            <span class="text-white text-sm font-medium">1:4 ratio</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- right hero visual (collage) -->
+                <div class="flex-1 flex justify-center lg:justify-end">
+                    <div class="relative grid grid-cols-2 gap-3 w-72 md:w-80">
+                        <div class="space-y-3">
+                            <div class="bg-white/20 backdrop-blur-sm p-2 rounded-2xl border-2 border-white/50 shadow-xl">
+                                <img src="images/attendance.webp" alt="attendance" class="w-full h-24 object-cover rounded-xl">
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm p-2 rounded-2xl border-2 border-white/50 shadow-xl">
+                                <img src="images/early learning.avif" alt="early learning" class="w-full h-24 object-cover rounded-xl">
+                            </div>
+                        </div>
+                        <div class="space-y-3 mt-6">
+                            <div class="bg-white/20 backdrop-blur-sm p-2 rounded-2xl border-2 border-white/50 shadow-xl">
+                                <img src="images/grp activities.avif" alt="group activity" class="w-full h-24 object-cover rounded-xl">
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm p-2 rounded-2xl border-2 border-white/50 shadow-xl">
+                                <img src="images/creative playing.avif" alt="creative play" class="w-full h-24 object-cover rounded-xl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OUR PROGRAMS SECTION (neat card alignment, fixed spacing) ========== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center">
+            <span class="text-pink-600 dark:text-pink-400 text-sm font-semibold uppercase tracking-wider">Our programs</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mt-2">Care that grows with your child</h2>
+            <p class="text-gray-600 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Developmentally appropriate programs designed for every stage.</p>
+        </div>
+
+        <!-- CARD GRID – FULLY CENTERED, EQUAL HEIGHT, NO EXCESS SPACE -->
+        <div class="grid-cards mt-12 justify-items-stretch">
+            <!-- 1. Infant -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/infant.webp" alt="Infant" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Infant</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">6 weeks – 12 months</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Gentle care, sensory play, and nurturing routines in a calm environment.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:4 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">daily reports</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- 2. Toddler -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/toddler.avif" alt="Toddler" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Toddler</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">12 – 24 months</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Curiosity-led exploration, language development, and motor skills.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:5 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">music & movement</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- 3. Preschool -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/pre-school.avif" alt="Preschool" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Preschool</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">2 – 3 years</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Early academics, social skills, and creative expression through play.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:7 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">pre-reading</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- 4. Pre-K -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/about.jpeg" alt="Pre-K" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Pre-K</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">4 – 5 years</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Kindergarten readiness, STEM exploration, and confidence building.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:8 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">kindergarten prep</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECOND ROW: Additional programs (Habitat, Dicipline, Fun Activity, Kinders) – neatly aligned -->
+        <div class="grid-cards mt-8 justify-items-stretch">
+            <!-- Habitat (extra program) -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/photo-1440288736878-766bd5839edb.avif" alt="Habitat" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Habitat</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">6 weeks – 12 months</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Gentle care, sensory play, and nurturing routines in a calm environment.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:4 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">daily reports</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Dicipline -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/img2.avif" alt="Dicipline" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Dicipline</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">12 – 24 months</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Curiosity-led exploration, language development, and motor skills.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:5 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">music & movement</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Fun Activity -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/play2.avif" alt="Fun Activity" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Fun Activity</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">2 – 3 years</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Early academics, social skills, and creative expression through play.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:7 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">pre-reading</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Kinders -->
+            <div class="service-card bg-white dark:bg-[#1f1b26] rounded-3xl p-6 border border-pink-100 dark:border-pink-900/70 shadow-lg hover:border-pink-300 dark:hover:border-pink-700 group flex flex-col h-full w-full max-w-xs mx-auto">
+                <div class="relative -mt-10 mb-4 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        <img src="images/creative games.avif" alt="Kinders" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Kinders</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">4 – 5 years</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 flex-grow">Kindergarten readiness, STEM exploration, and confidence building.</p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">1:8 ratio</span>
+                        <span class="text-xs bg-pink-50 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">kindergarten prep</span>
+                    </div>
+                    <a href="servicedetails.html" class="mt-5 inline-flex items-center text-pink-600 dark:text-pink-400 text-sm font-medium group-hover:gap-2 transition-all justify-center">
+                        Learn more <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== ENRICHMENT PROGRAMS (specialty services) WITH IMAGES – DARK ADAPTED ========== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class=" dark:to-[#241f2c] rounded-4xl p-8 md:p-10 mb-20 ">
+            <div class="flex flex-col lg:flex-row items-center gap-10">
+                <!-- Left: Content with Images -->
+                <div class="lg:w-1/2">
+                    <span class="text-pink-600 dark:text-pink-400 text-sm font-semibold uppercase tracking-wider">Enrichment</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mt-2">More than just daycare</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-3">Included enrichment programs that spark curiosity and creativity.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                        <div class="flex items-start gap-3 bg-white/60 dark:bg-[#2d2736]/80 p-3 rounded-xl border border-pink-100 dark:border-pink-900/70">
+                            <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900/70 rounded-xl overflow-hidden flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100&h=100&auto=format&fit=crop" alt="Music" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-100">Music & Movement</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Weekly rhythm classes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white/60 dark:bg-[#2d2736]/80 p-3 rounded-xl border border-pink-100 dark:border-pink-900/70">
+                            <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900/70 rounded-xl overflow-hidden flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?w=100&h=100&auto=format&fit=crop" alt="Art" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-100">Art Studio</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Process art & creativity</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white/60 dark:bg-[#2d2736]/80 p-3 rounded-xl border border-pink-100 dark:border-pink-900/70">
+                            <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900/70 rounded-xl overflow-hidden flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=100&h=100&auto=format&fit=crop" alt="Gardening" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-100">Gardening</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Outdoor nature lab</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white/60 dark:bg-[#2d2736]/80 p-3 rounded-xl border border-pink-100 dark:border-pink-900/70">
+                            <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900/70 rounded-xl overflow-hidden flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=100&h=100&auto=format&fit=crop" alt="Spanish" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-100">Spanish</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Introductory language</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-pink-600/10 dark:bg-pink-900/40 rounded-2xl p-4 border border-pink-200 dark:border-pink-800/70 flex items-center gap-3">
+                        <i class="fas fa-circle-check text-pink-600 dark:text-pink-400 text-xl"></i>
+                        <span class="text-sm text-gray-700 dark:text-gray-200"><span class="font-bold text-pink-600 dark:text-pink-400">All included</span> in tuition – no extra fees</span>
+                    </div>
+                </div>
+                
+                <!-- Right: Image Gallery Grid -->
+                <div class="lg:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="relative group overflow-hidden rounded-2xl border-4 border-white dark:border-gray-800 shadow-lg">
+                            <img src="images/img3.avif" alt="Kids dancing" class="w-full h-40 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-3">
+                                <span class="text-white text-sm font-medium flex items-center gap-1"><i class="fas fa-music"></i> Music</span>
+                            </div>
+                        </div>
+                        <div class="relative group overflow-hidden rounded-2xl border-4 border-white dark:border-gray-800 shadow-lg">
+                            <img src="images/img1.avif" alt="Painting" class="w-full h-40 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-3">
+                                <span class="text-white text-sm font-medium flex items-center gap-1"><i class="fas fa-paint-brush"></i> Art</span>
+                            </div>
+                        </div>
+                        <div class="relative group overflow-hidden rounded-2xl border-4 border-white dark:border-gray-800 shadow-lg">
+                            <img src="images/outdoor play.avif" alt="Gardening" class="w-full h-40 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-3">
+                                <span class="text-white text-sm font-medium flex items-center gap-1"><i class="fas fa-leaf"></i> Gardening</span>
+                            </div>
+                        </div>
+                        <div class="relative group overflow-hidden rounded-2xl border-4 border-white dark:border-gray-800 shadow-lg">
+                            <img src="images/toddler.avif" alt="Cooking" class="w-full h-40 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-3">
+                                <span class="text-white text-sm font-medium flex items-center gap-1"><i class="fas fa-utensils"></i> Cooking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MEAL & NUTRITION PROGRAM (dark ready) ========== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-br from-pink-500 via-pink-600 to-pink-700 dark:from-pink-700 dark:via-pink-800 dark:to-pink-900 rounded-4xl  md:p-10 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 dark:opacity-20">
+                <i class="fas fa-apple absolute text-white text-6xl top-10 left-10"></i>
+                <i class="fas fa-carrot absolute text-white text-6xl bottom-10 right-20"></i>
+                <i class="fas fa-bread-slice absolute text-white text-5xl top-20 right-40"></i>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-8 text-white">
+                    <div class="lg:w-2/3">
+                        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2 border border-white/30 mb-4">
+                            <i class="fas fa-utensils"></i>
+                            <span class="text-sm font-medium">Nutritious & delicious</span>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold">Farm-to-table meals</h2>
+                        <p class="text-lg text-pink-50 dark:text-pink-100 mt-3 max-w-2xl">Fresh, organic, and chef-prepared meals that little ones love. Allergies? We've got you covered.</p>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/20">
+                                <i class="fas fa-leaf text-2xl"></i>
+                                <p class="text-sm font-medium mt-1">Organic</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/20">
+                                <i class="fas fa-wheat-awn text-2xl"></i>
+                                <p class="text-sm font-medium mt-1">Whole grain</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/20">
+                                <i class="fas fa-droplet text-2xl"></i>
+                                <p class="text-sm font-medium mt-1">No added sugar</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/20">
+                                <i class="fas fa-heart text-2xl"></i>
+                                <p class="text-sm font-medium mt-1">Kid-approved</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex flex-wrap items-center gap-4">
+                           
+                            <span class="text-pink-100 dark:text-pink-200 text-sm flex items-center gap-1">
+                                <i class="fas fa-circle-check"></i> Breakfast, lunch, snack included
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/3 flex justify-center">
+                        <div class="bg-white/10 backdrop-blur-sm p-4 rounded-3xl border-4 border-white/30">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-5 text-center">
+                                <i class="fas fa-apple-alt text-pink-600 dark:text-pink-400 text-5xl"></i>
+                                <p class="text-pink-600 dark:text-pink-400 font-bold text-lg mt-2">Today's snack</p>
+                                <p class="text-gray-700 dark:text-gray-200">Apple slices & yogurt</p>
+                                <span class="text-xs bg-pink-100 dark:bg-pink-900/70 text-pink-800 dark:text-pink-300 px-3 py-1 rounded-full mt-2 inline-block">organic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CTA BANNER ========== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Ready to join our GrowwCare family?</h3>
+            <p class="text-gray-600 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Limited spots available for the upcoming session. Schedule a tour today!</p>
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+                <a href="servicedetails.html" class="bg-pink-600 hover:bg-pink-700 dark:bg-pink-600 dark:hover:bg-pink-700 text-white px-8 py-3 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 transition">
+                    <i class="fas fa-calendar-check"></i> Service Details
+                </a>
+                <a href="contact.html" class="bg-pink-50 hover:bg-pink-100 dark:bg-pink-900/50 dark:hover:bg-pink-900/80 text-pink-700 dark:text-pink-300 px-8 py-3 rounded-full text-sm font-medium border border-pink-200 dark:border-pink-800 flex items-center gap-2 transition">
+                    <i class="fas fa-file-invoice"></i> Enrollment info
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <div id="footer"></div>
+
+    <!-- Scripts: navbar/footer loaders and dark toggle -->
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    
+    <!-- Dark mode toggle functionality -->
+    <script>
+        (function() {
+            const toggleBtn = document.getElementById('darkToggle');
+            if (toggleBtn) {
+                // update icon based on current mode
+                function updateIcon() {
+                    const isDark = document.documentElement.classList.contains('dark');
+                    const icon = toggleBtn.querySelector('i');
+                    if (icon) {
+                        icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                    }
+                }
+                updateIcon();
+                toggleBtn.addEventListener('click', function() {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        document.documentElement.classList.add('light');
+                        localStorage.theme = 'light';
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        document.documentElement.classList.remove('light');
+                        localStorage.theme = 'dark';
+                    }
+                    updateIcon();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

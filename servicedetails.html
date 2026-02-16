@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>GrowwCare  Services Details</title>
+    <!-- Tailwind via CDN with dark mode config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="growwpark_logo.jpg">
+
+    <!-- Font Awesome 6 & Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Font Inter + Nunito fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Nunito', sans-serif;
+            transition: background-color 0.3s ease, color 0.2s ease;
+        }
+        /* custom pink utilities */
+        .bg-pink-600 { background-color: #db2777; }
+        .text-pink-600 { color: #db2777; }
+        .border-pink-600 { border-color: #db2777; }
+        .hover-bg-pink-700:hover { background-color: #be185d; }
+        
+        /* dark mode overrides for custom classes */
+        .dark .bg-pink-600 { background-color: #ec4899; } /* lighter pink for dark bg */
+        .dark .text-pink-600 { color: #f472b6; }
+        .dark .border-pink-600 { border-color: #f472b6; }
+        
+        .dark .bg-pink-50 { background-color: #2d1f2a; }
+        .dark .bg-pink-100 { background-color: #3b2632; }
+        .dark .text-pink-700 { color: #f9a8d4; }
+        .dark .border-pink-100 { border-color: #5e3a4a; }
+        .dark .border-pink-200 { border-color: #6b4a5a; }
+        .dark .bg-pink-600\/10 { background-color: rgba(219, 39, 119, 0.2); }
+        .dark .bg-pink-600\/90 { background-color: rgba(236, 72, 153, 0.85); }
+        
+        /* smooth dark transitions */
+        .dark .bg-white { background-color: #1e1e2a; }
+        .dark .bg-gray-50 { background-color: #262632; }
+        .dark .text-gray-800 { color: #f1f5f9; }
+        .dark .text-gray-700 { color: #e2e8f0; }
+        .dark .text-gray-600 { color: #cbd5e1; }
+        .dark .text-gray-500 { color: #94a3b8; }
+        .dark .border-white { border-color: #2d3748; }
+        .dark .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        
+        .hero-wave .shape-fill { fill: #FDF2F8; }
+        .dark .hero-wave .shape-fill { fill: #1e1e2a; } /* adapt wave to dark mode */
+        
+        .dark .bg-gradient-to-r.from-pink-900\/90.via-pink-700\/85.to-pink-500\/80 {
+            background: linear-gradient(to right, rgba(76, 5, 25, 0.9), rgba(157, 23, 77, 0.8), rgba(190, 24, 93, 0.7));
+        }
+        
+        /* floating animation remains */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .float { animation: float 4s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin 8s linear infinite; }
+        .animate-bounce-slow { animation: bounce 3s infinite; }
+    </style>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pink: {
+                            600: '#db2777',
+                            700: '#be185d',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <!-- Dark mode initialization script (ensures class persistence) -->
+    <script>
+        (function() {
+            // Check local storage or system preference
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+            }
+        })();
+    </script>
+</head>
+<body class="antialiased bg-pink-50 dark:bg-[#1a1625] transition-colors duration-300">
+
+    <!-- Navbar placeholder (injected via js, but we need dark-aware styling) -->
+    <div id="navbar"></div>
+
+    <!-- ========== HERO BANNER – with dark mode overlay adjustment ========== -->
+    <section class="relative overflow-hidden">
+        <!-- Background Image with Overlay - dark mode uses deeper overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/indoor.avif" 
+                 alt="Happy children playing" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-pink-900/90 via-pink-700/85 to-pink-500/80 dark:from-[#2d0a1e]/95 dark:via-[#4a1d2e]/90 dark:to-[#632d3e]/85"></div>
+        </div>
+        
+        <!-- Decorative floating icons (keep visible in dark) -->
+        <div class="absolute inset-0 z-1 opacity-20 dark:opacity-30">
+            <i class="fas fa-cloud absolute text-white text-6xl top-20 left-10 animate-pulse"></i>
+            <i class="fas fa-balloon absolute text-white text-5xl bottom-20 right-20" style="animation: bounce 3s infinite;"></i>
+            <i class="fas fa-star absolute text-white text-4xl top-40 right-40 animate-spin-slow"></i>
+            <i class="fas fa-heart absolute text-white text-5xl bottom-40 left-20 animate-pulse" style="animation-delay: 1s;"></i>
+            <i class="fas fa-smile absolute text-white text-6xl top-60 left-1/4 animate-bounce-slow"></i>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                        Where little 
+                        <span class="relative inline-block">
+                            <span class="relative z-10">dreamers</span>
+                        </span>
+                        <br>bloom every day
+                    </h1>
+                    <p class="text-xl text-pink-50 dark:text-pink-100 mt-6 max-w-2xl lg:mx-0 mx-auto leading-relaxed">
+                        From first giggles to kindergarten confidence — discover <span class="font-bold text-white dark:text-pink-200">4 unique programs</span> crafted with love, science, and the magic of early childhood.
+                    </p>
+                    
+                    <!-- CTA Group -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-10">
+                        <a href="#" class="group bg-white dark:bg-[#2d2a3a] hover:bg-pink-50 dark:hover:bg-[#3a3145] text-pink-700 dark:text-pink-300 px-8 py-4 rounded-2xl text-sm font-bold shadow-2xl flex items-center gap-3 transition-all hover:scale-105">
+                            <span class="bg-pink-600 text-white w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-pink-700 transition dark:bg-pink-500 dark:group-hover:bg-pink-600">
+                                <i class="fas fa-play text-xs"></i>
+                            </span>
+                            Watch our story
+                        </a>
+                        <a href="#" class="bg-pink-600/90 backdrop-blur-sm hover:bg-pink-700 dark:bg-pink-600/80 dark:hover:bg-pink-700 text-white px-8 py-4 rounded-2xl text-sm font-bold border-2 border-white/30 shadow-2xl flex items-center gap-2 transition-all hover:scale-105">
+                            <i class="fas fa-calendar-check"></i>
+                            Schedule tour
+                        </a>
+                    </div>
+                    
+                    <!-- Trust badges -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-6 mt-12">
+                        <div class="flex items-center gap-2 bg-white/15 backdrop-blur-md rounded-xl px-4 py-2 border border-white/30 dark:bg-black/30 dark:border-white/20">
+                            <i class="fas fa-shield-heart text-pink-200 text-lg"></i>
+                            <span class="text-white text-sm font-medium">Licensed</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/15 backdrop-blur-md rounded-xl px-4 py-2 border border-white/30 dark:bg-black/30 dark:border-white/20">
+                            <i class="fas fa-star text-yellow-300 text-lg"></i>
+                            <span class="text-white text-sm font-medium">4.9 ★ (250+ reviews)</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/15 backdrop-blur-md rounded-xl px-4 py-2 border border-white/30 dark:bg-black/30 dark:border-white/20">
+                            <i class="fas fa-clock text-pink-200 text-lg"></i>
+                            <span class="text-white text-sm font-medium">Est. 2018</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Interactive Card (fully dark adapted) -->
+                <div class="hidden lg:block relative">
+                    <div class="relative bg-white/95 dark:bg-[#262230]/95 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border-4 border-white/50 dark:border-gray-700/60 transition-all duration-500">
+                        <div class="absolute -top-4 -left-4 w-20 h-20 bg-pink-400 rounded-full opacity-20 blur-xl dark:bg-pink-600/30"></div>
+                        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-pink-300 rounded-full opacity-20 blur-xl dark:bg-pink-700/30"></div>
+                        
+                        <!-- Program preview grid -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-[#332a3a] dark:to-[#2f2535] p-4 rounded-2xl border-2 border-pink-200 dark:border-pink-800/60">
+                                <div class="w-12 h-12 bg-pink-600 dark:bg-pink-500 rounded-xl flex items-center justify-center mb-2">
+                                    <i class="fas fa-baby text-white text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-100">Infant</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">6w-12m • 1:4</p>
+                                <span class="inline-block mt-2 text-[10px] bg-pink-200 text-pink-800 dark:bg-pink-900/60 dark:text-pink-200 px-2 py-1 rounded-full"> 2 spots</span>
+                            </div>
+                            <div class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-[#332a3a] dark:to-[#2f2535] p-4 rounded-2xl border-2 border-pink-200 dark:border-pink-800/60">
+                                <div class="w-12 h-12 bg-pink-600 dark:bg-pink-500 rounded-xl flex items-center justify-center mb-2">
+                                    <i class="fas fa-child text-white text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-100">Toddler</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">12-24m • 1:5</p>
+                                <span class="inline-block mt-2 text-[10px] bg-green-200 text-green-800 dark:bg-green-900/60 dark:text-green-200 px-2 py-1 rounded-full"> available</span>
+                            </div>
+                            <div class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-[#332a3a] dark:to-[#2f2535] p-4 rounded-2xl border-2 border-pink-200 dark:border-pink-800/60">
+                                <div class="w-12 h-12 bg-pink-600 dark:bg-pink-500 rounded-xl flex items-center justify-center mb-2">
+                                    <i class="fas fa-pencil-alt text-white text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-100">Preschool</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">2-3y • 1:7</p>
+                                <span class="inline-block mt-2 text-[10px] bg-green-200 text-green-800 dark:bg-green-900/60 dark:text-green-200 px-2 py-1 rounded-full"> available</span>
+                            </div>
+                            <div class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-[#332a3a] dark:to-[#2f2535] p-4 rounded-2xl border-2 border-pink-200 dark:border-pink-800/60">
+                                <div class="w-12 h-12 bg-pink-600 dark:bg-pink-500 rounded-xl flex items-center justify-center mb-2">
+                                    <i class="fas fa-graduation-cap text-white text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-100">Pre-K</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">4-5y • 1:8</p>
+                                <span class="inline-block mt-2 text-[10px] bg-pink-200 text-pink-800 dark:bg-pink-900/60 dark:text-pink-200 px-2 py-1 rounded-full"> 1 spot</span>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA inside card -->
+                        <div class="mt-5 bg-pink-600 dark:bg-pink-700 rounded-xl p-3 text-center">
+                            <p class="text-white text-sm font-bold flex items-center justify-center gap-2">
+                                <i class="fas fa-regular fa-calendar"></i>
+                                Book a tour & get $50 off enrollment!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile version of right content -->
+                <div class="lg:hidden mt-10">
+                    <div class="bg-white/95 dark:bg-[#2d2838]/95 backdrop-blur-sm rounded-2xl p-5 border-2 border-white/50 dark:border-gray-700/70 shadow-2xl">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-pink-100 dark:bg-[#4a2e44] rounded-xl flex items-center justify-center mx-auto mb-1">
+                                    <i class="fas fa-baby text-pink-600 dark:text-pink-400 text-xl"></i>
+                                </div>
+                                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">Infant</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-pink-100 dark:bg-[#4a2e44] rounded-xl flex items-center justify-center mx-auto mb-1">
+                                    <i class="fas fa-child text-pink-600 dark:text-pink-400 text-xl"></i>
+                                </div>
+                                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">Toddler</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-pink-100 dark:bg-[#4a2e44] rounded-xl flex items-center justify-center mx-auto mb-1">
+                                    <i class="fas fa-pencil-alt text-pink-600 dark:text-pink-400 text-xl"></i>
+                                </div>
+                                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">Preschool</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-pink-100 dark:bg-[#4a2e44] rounded-xl flex items-center justify-center mx-auto mb-1">
+                                    <i class="fas fa-graduation-cap text-pink-600 dark:text-pink-400 text-xl"></i>
+                                </div>
+                                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">Pre-K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 5 DETAILED SERVICE COMPONENTS ========== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+
+        <!-- COMPONENT 1: INFANT CARE -->
+        <div id="infant" class="service-detail-card bg-white dark:bg-[#24202c] rounded-4xl p-8 md:p-10 border border-pink-100 dark:border-pink-900/50 mb-16 scroll-mt-20 shadow-xl dark:shadow-2xl transition-colors">
+            <div class="flex flex-col lg:flex-row gap-10">
+                <div class="lg:w-2/5">
+                    <div class="relative">
+                        <div class="rounded-3xl overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
+                            <img src="images/img3.avif" alt="Infant care" class="w-full h-64 lg:h-80 object-cover">
+                        </div>
+                        <div class="absolute -top-5 -left-5 w-20 h-20 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center shadow-xl border-4 border-white dark:border-gray-800">
+                            <i class="fas fa-baby text-pink-600 dark:text-pink-400 text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-4">
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/photo-1440288736878-766bd5839edb.avif" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/pre-school.avif" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/toddler.avif" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-3/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-pink-600 dark:bg-pink-700 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Program 01</span>
+                        <span class="bg-pink-100 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-4 py-1.5 rounded-full text-xs font-medium"> Parent favorite</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Infant Care</h2>
+                    <p class="text-lg text-pink-600 dark:text-pink-400 font-medium mt-1">Nurturing beginnings, responsive care</p>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white">1:4</span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Teacher ratio</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-file-earmark-bar-graph-fill"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Daily reports</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-file-earmark-music-fill"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Sensory play</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mt-6 leading-relaxed">
+                        Our infant program provides a warm, secure environment where babies thrive. Each child is assigned a primary caregiver who responds attentively to their cues, building trust and emotional security. We follow your child's home routine for feeding, sleeping, and diapering – because every baby is unique.
+                    </p>
+                    
+                    <div class="mt-6 space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Responsive caregiving</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Individualized feeding, diapering, and nap schedules</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Sensory & motor development</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Tummy time, grasping toys, mirror play, and music</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Parent communication</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Real-time updates, photos, and daily reports via app</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="programdetails.html" class="bg-pink-600 hover:bg-pink-700 dark:bg-pink-600 dark:hover:bg-pink-700 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg flex items-center gap-2 transition">
+                            <i class="fas fa-calendar-check"></i> Schedule a tour
+                        </a>
+                        <a href="programdetails.html" class="bg-white dark:bg-[#322e3c] border border-pink-300 dark:border-pink-700/60 hover:bg-pink-50 dark:hover:bg-[#3f3549] text-pink-700 dark:text-pink-300 px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2 transition">
+                            <i class="fas fa-file-pdf"></i> Download info pack
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPONENT 2: TODDLER CARE -->
+        <div id="toddler" class="service-detail-card bg-white dark:bg-[#24202c] rounded-4xl p-8 md:p-10 border border-pink-100 dark:border-pink-900/50 mb-16 scroll-mt-20 shadow-xl dark:shadow-2xl transition-colors">
+            <div class="flex flex-col lg:flex-row-reverse gap-10">
+                <div class="lg:w-2/5">
+                    <div class="relative">
+                        <div class="rounded-3xl overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
+                            <img src="images/creative playing.avif" alt="Toddler care" class="w-full h-64 lg:h-80 object-cover">
+                        </div>
+                        <div class="absolute -top-5 -left-5 w-20 h-20 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center shadow-xl border-4 border-white dark:border-gray-800">
+                            <i class="fas fa-child text-pink-600 dark:text-pink-400 text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-4">
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/infant.webp" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/outdoor play.avif" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/grp activities.avif" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-3/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-pink-600 dark:bg-pink-700 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Program 02</span>
+                        <span class="bg-pink-100 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-4 py-1.5 rounded-full text-xs font-medium"> First steps</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Toddler</h2>
+                    <p class="text-lg text-pink-600 dark:text-pink-400 font-medium mt-1">Curiosity in motion, language blossoms</p>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white">1:5</span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Teacher ratio</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-translate"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Language rich</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-pc-display-horizontal"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Hands-on play</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mt-6 leading-relaxed">
+                        Toddlers are natural explorers. Our program channels their boundless energy into purposeful play that builds language, motor skills, and independence. We introduce simple routines, encourage communication, and celebrate every "I did it!" moment.
+                    </p>
+                    <div class="mt-6 space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Language explosion</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Storytime, songs, and conversational modeling</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Gross motor play</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Climbing, running, jumping – indoor & outdoor</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Beginning independence</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Self-feeding, clean-up, choosing activities</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="programdetails.html" class="bg-pink-600 hover:bg-pink-700 dark:bg-pink-600 dark:hover:bg-pink-700 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg flex items-center gap-2 transition">
+                            <i class="fas fa-calendar-check"></i> Schedule a tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPONENT 3: PRESCHOOL -->
+        <div id="preschool" class="service-detail-card bg-white dark:bg-[#24202c] rounded-4xl p-8 md:p-10 border border-pink-100 dark:border-pink-900/50 mb-16 scroll-mt-20 shadow-xl dark:shadow-2xl transition-colors">
+            <div class="flex flex-col lg:flex-row gap-10">
+                <div class="lg:w-2/5">
+                    <div class="relative">
+                        <div class="rounded-3xl overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
+                            <img src="images/party.webp" alt="Preschool" class="w-full h-64 lg:h-80 object-cover">
+                        </div>
+                        <div class="absolute -top-5 -left-5 w-20 h-20 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center shadow-xl border-4 border-white dark:border-gray-800">
+                            <i class="fas fa-pencil-alt text-pink-600 dark:text-pink-400 text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-4">
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/attendance.webp" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/indoor.avif" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/outdoor.avif" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-3/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-pink-600 dark:bg-pink-700 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Program 03</span>
+                        <span class="bg-pink-100 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-4 py-1.5 rounded-full text-xs font-medium"> Creative explorers</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Preschool</h2>
+                    <p class="text-lg text-pink-600 dark:text-pink-400 font-medium mt-1">Imagination, friendship, early academics</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white">1:7</span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Teacher ratio</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-bookmarks-fill"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Pre-reading</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-calculator"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Early math</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mt-6 leading-relaxed">
+                        Preschool is a time of incredible growth. We nurture independence, friendship skills, and a love for learning through play-based investigations. Children explore letters, numbers, science, and art – all at their own pace.
+                    </p>
+                    <div class="mt-6 space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Literacy & phonics</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Letter recognition, rhyming, name writing</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Social-emotional learning</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Sharing, taking turns, identifying feelings</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">STEM investigations</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Magnets, sink/float, building, patterns</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="programdetails.html" class="bg-pink-600 hover:bg-pink-700 dark:bg-pink-600 dark:hover:bg-pink-700 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg flex items-center gap-2 transition">
+                            <i class="fas fa-calendar-check"></i> Schedule a tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPONENT 4: PRE-K -->
+        <div id="prek" class="service-detail-card bg-white dark:bg-[#24202c] rounded-4xl p-8 md:p-10 border border-pink-100 dark:border-pink-900/50 mb-16 scroll-mt-20 shadow-xl dark:shadow-2xl transition-colors">
+            <div class="flex flex-col lg:flex-row-reverse gap-10">
+                <div class="lg:w-2/5">
+                    <div class="relative">
+                        <div class="rounded-3xl overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
+                            <img src="images/about.jpeg" alt="Pre-K" class="w-full h-64 lg:h-80 object-cover">
+                        </div>
+                        <div class="absolute -top-5 -left-5 w-20 h-20 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center shadow-xl border-4 border-white dark:border-gray-800">
+                            <i class="fas fa-graduation-cap text-pink-600 dark:text-pink-400 text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-4">
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/grp activities.avif" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/play1.avif" class="w-full h-full object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-md h-16">
+                            <img src="images/photo-1440288736878-766bd5839edb.avif" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-3/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-pink-600 dark:bg-pink-700 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Program 04</span>
+                        <span class="bg-pink-100 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-4 py-1.5 rounded-full text-xs font-medium"> Kindergarten ready</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Pre-K</h2>
+                    <p class="text-lg text-pink-600 dark:text-pink-400 font-medium mt-1">Confidence, critical thinking, school readiness</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white">1:8</span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Teacher ratio</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-book-half"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Emergent reading</p>
+                        </div>
+                        <div class="bg-pink-50/50 dark:bg-[#332a38] rounded-xl p-3 text-center">
+                            <span class="text-2xl font-bold text-gray-800 dark:text-white"><i class="bi bi-steam"></i></span>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">STEAM</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mt-6 leading-relaxed">
+                        Our Pre-K program builds the academic and social foundation for lifelong learning. Children engage in project-based investigations, develop early literacy and math skills, and graduate as confident, curious, and kind learners – fully prepared for kindergarten.
+                    </p>
+                    <div class="mt-6 space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Kindergarten readiness</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Phonics, sight words, number sense, writing</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Critical thinking</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Problem-solving, predicting, cause & effect</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-pink-100 dark:bg-pink-900/70 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-pink-600 dark:text-pink-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-800 dark:text-gray-100">Leadership & empathy</span>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Classroom helpers, conflict resolution, collaboration</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="programdetails.html" class="bg-pink-600 hover:bg-pink-700 dark:bg-pink-600 dark:hover:bg-pink-700 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg flex items-center gap-2 transition">
+                            <i class="fas fa-calendar-check"></i> Schedule a tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPONENT 5: ENRICHMENT & ADD-ONS -->
+        <div class="service-detail-card bg-white dark:bg-[#24202c] rounded-4xl p-8 md:p-10 border border-pink-100 dark:border-pink-900/50 shadow-xl dark:shadow-2xl transition-colors">
+            <div class="text-center mb-10">
+                <span class="text-pink-600 dark:text-pink-400 text-sm font-semibold uppercase tracking-wider">Included enrichment</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mt-2">More than just daycare</h2>
+                <p class="text-gray-600 dark:text-gray-300 mt-3 max-w-2xl mx-auto">Every program includes these enrichment experiences – no extra fees.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Music -->
+                <div class="bg-white dark:bg-[#2f2a38] rounded-2xl p-6 border border-pink-100 dark:border-pink-900/60 shadow-lg flex items-start gap-4">
+                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/80 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-music text-pink-600 dark:text-pink-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 dark:text-gray-100 text-lg">Music & Movement</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Weekly classes with instruments, songs, dance. Builds rhythm, coordination, joy.</p>
+                        <span class="inline-block mt-2 text-xs bg-pink-50 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">2x/week</span>
+                    </div>
+                </div>
+                <!-- Art -->
+                <div class="bg-white dark:bg-[#2f2a38] rounded-2xl p-6 border border-pink-100 dark:border-pink-900/60 shadow-lg flex items-start gap-4">
+                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/80 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-paint-brush text-pink-600 dark:text-pink-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 dark:text-gray-100 text-lg">Art Studio</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Process-focused art, mixed media, creativity. Self-expression without limits.</p>
+                        <span class="inline-block mt-2 text-xs bg-pink-50 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">Daily</span>
+                    </div>
+                </div>
+                <!-- Gardening -->
+                <div class="bg-white dark:bg-[#2f2a38] rounded-2xl p-6 border border-pink-100 dark:border-pink-900/60 shadow-lg flex items-start gap-4">
+                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/80 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-leaf text-pink-600 dark:text-pink-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 dark:text-gray-100 text-lg">Gardening</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Outdoor nature lab – planting, watering, harvesting. Connecting with the earth.</p>
+                        <span class="inline-block mt-2 text-xs bg-pink-50 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">Seasonal</span>
+                    </div>
+                </div>
+                <!-- Spanish -->
+                <div class="bg-white dark:bg-[#2f2a38] rounded-2xl p-6 border border-pink-100 dark:border-pink-900/60 shadow-lg flex items-start gap-4">
+                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/80 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-language text-pink-600 dark:text-pink-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 dark:text-gray-100 text-lg">Spanish Immersion</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Introductory vocabulary, songs, cultural celebration.</p>
+                        <span class="inline-block mt-2 text-xs bg-pink-50 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">2x/week</span>
+                    </div>
+                </div>
+                <!-- Yoga & Mindfulness -->
+                <div class="bg-white dark:bg-[#2f2a38] rounded-2xl p-6 border border-pink-100 dark:border-pink-900/60 shadow-lg flex items-start gap-4">
+                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/80 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-heart text-pink-600 dark:text-pink-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 dark:text-gray-100 text-lg">Yoga & Mindfulness</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Breathing, gentle poses, calm-down strategies.</p>
+                        <span class="inline-block mt-2 text-xs bg-pink-50 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">Weekly</span>
+                    </div>
+                </div>
+                <!-- Cooking -->
+                <div class="bg-white dark:bg-[#2f2a38] rounded-2xl p-6 border border-pink-100 dark:border-pink-900/60 shadow-lg flex items-start gap-4">
+                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/80 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-utensils text-pink-600 dark:text-pink-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 dark:text-gray-100 text-lg">Little Chefs</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Simple, no-cook recipes – measuring, mixing, tasting.</p>
+                        <span class="inline-block mt-2 text-xs bg-pink-50 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">Monthly</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- All included badge -->
+            <div class="mt-10 bg-pink-600/10 dark:bg-pink-900/30 rounded-2xl p-5 border border-pink-200 dark:border-pink-800/60 flex flex-wrap items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-pink-600 dark:bg-pink-700 rounded-full flex items-center justify-center">
+                        <i class="fas fa-gift text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-lg font-bold text-gray-800 dark:text-gray-100">All enrichment programs are <span class="text-pink-600 dark:text-pink-400">included in tuition</span></p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">No hidden fees, no extra charges – just more learning and fun.</p>
+                    </div>
+                </div>
+                <a href="#" class="mt-3 lg:mt-0 bg-white dark:bg-[#302c3a] border border-pink-300 dark:border-pink-700/50 hover:bg-pink-50 dark:hover:bg-[#443d51] text-pink-700 dark:text-pink-300 px-6 py-2 rounded-full text-sm font-medium transition">
+                    View full curriculum
+                </a>
+            </div>
+        </div>
+        
+        <!-- Final CTA -->
+        <div class="mt-16 text-center">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Ready to find the perfect fit for your child?</h3>
+            <p class="text-gray-600 dark:text-gray-400 mt-3">Contact us for a tour or personalized guidance.</p>
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+                <a href="services.html" class="bg-pink-600 hover:bg-pink-700 dark:bg-pink-600 dark:hover:bg-pink-700 text-white px-8 py-3.5 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 transition">
+                    <i class="fas fa-calendar-check"></i> Back to Services
+                </a>
+                <a href="#" class="bg-white dark:bg-[#322e3c] border border-pink-300 dark:border-pink-700/50 hover:bg-pink-50 dark:hover:bg-[#403949] text-pink-700 dark:text-pink-300 px-8 py-3.5 rounded-full text-sm font-medium flex items-center gap-2 transition">
+                    <i class="fas fa-phone-alt"></i> Call admissions
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
+
+    <!-- Navbar and footer scripts (ensure they don't conflict with dark mode) -->
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    
+    <!-- Optional: Add a manual dark mode toggle button for demonstration (hidden by default, can be activated) 
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="darkModeToggle" class="bg-pink-600 text-white p-4 rounded-full shadow-2xl">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div> -->
+    <script>
+        // uncomment below for manual toggle if needed
+        /*
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('darkModeToggle');
+            if (toggle) {
+                toggle.addEventListener('click', function() {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        document.documentElement.classList.add('light');
+                        localStorage.theme = 'light';
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        document.documentElement.classList.remove('light');
+                        localStorage.theme = 'dark';
+                    }
+                });
+            }
+        });
+        */
+    </script>
+</body>
+</html>

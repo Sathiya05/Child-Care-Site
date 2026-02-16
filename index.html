@@ -1,0 +1,853 @@
+ <!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child DayCare</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+          <link rel="icon" href="growwpark_logo.jpg">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+                     <script>
+    tailwind.config = {
+      darkMode: "class",
+    };
+  </script>
+</head>
+ <body>
+    <!-- navbar -->
+    <div id="navbar"></div>
+
+
+
+
+
+<!-- HERO SECTION -->
+<section class="mt-10 p-10 overflow-hidden relative 
+                bg-white dark:bg-gray-900 
+                transition-colors duration-500">
+
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img src="images/img1.avif" 
+         class="w-full h-full object-cover"
+         alt="Hero Background">
+    <div class="absolute inset-0 bg-pink-600/50 dark:bg-pink-900/60"></div>
+  </div>
+
+  <div class="container mx-auto px-4 py-8 md:py-16 lg:py-20 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+
+      <!-- LEFT CONTENT -->
+      <div class="lg:w-1/2 text-center lg:text-left">
+
+        <span class="inline-block px-4 py-1 rounded-full 
+                     bg-pink-100 dark:bg-pink-900/40 
+                     text-pink-700 dark:text-pink-400 
+                     font-semibold text-sm mb-4">
+          <i class="fas fa-star mr-1"></i> Trusted by 500+ Families
+        </span>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 
+                   text-white">
+          Nurturing Young Minds With
+          <span class="text-transparent bg-clip-text 
+                       bg-white
+                       dark:from-pink-700 dark:to-pink-800">
+            Love & Care
+          </span>
+        </h1>
+
+        <p class="text-lg md:text-xl 
+                  text-white/90
+                  mb-8 leading-relaxed transition-colors duration-300">
+          At GrowwCare, we provide a safe, stimulating, and loving environment where 
+          children can learn, grow, and thrive. Our certified caregivers ensure 
+          every child receives personalized attention and early education.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+
+          <a href="about.html"
+            class="px-8 py-4 bg-pink-600 hover:bg-pink-700 
+                   text-white font-semibold rounded-xl 
+                   shadow-lg hover:shadow-2xl 
+                   hover:scale-105 active:scale-95
+                   transition-all duration-300 text-center">
+            <i class="fas fa-child mr-2"></i> Learn About US
+          </a>
+
+          <a href="services.html"
+            class="px-8 py-4 
+                   bg-white/20 backdrop-blur-sm
+                   hover:bg-white/30
+                   text-white 
+                   font-semibold rounded-xl 
+                   border-2 border-white/50
+                   shadow-md hover:shadow-xl 
+                   hover:scale-105 active:scale-95
+                   transition-all duration-300 text-center">
+            <i class="fas fa-play-circle mr-2"></i> Watch Our Tour
+          </a>
+
+        </div>
+
+
+
+      </div>
+
+      <!-- RIGHT IMAGE - Now using a different image since img1.avif is used as background -->
+      <div class="lg:w-1/2">
+        <div class="rounded-3xl overflow-hidden shadow-2xl 
+                    hover:scale-105 transition-transform duration-500
+                    border-4 border-white/30">
+
+          <img src="images\img1.avif"
+               class="w-full h-72 md:h-96 lg:h-[500px] object-cover"
+               alt="Children Playing">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Dark Mode Script -->
+<script>
+  const toggle = document.getElementById("theme-toggle");
+
+  toggle.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+  });
+</script>
+
+<section class="py-20 
+                bg-pink-50 dark:bg-gray-800 
+                transition-colors duration-500">
+
+  <div class="container mx-auto px-4 max-w-7xl">
+
+    <!-- Title -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold 
+                 text-gray-900 dark:text-white mb-4">
+        A Day at GrowwCare 
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Our daily routine balances learning, play, nutrition and rest 
+        for your child’s healthy growth.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Card 1 -->
+      <div class="bg-white dark:bg-gray-900 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <!-- Image -->
+        <div class="overflow-hidden">
+          <img src="images\img2.avif"
+               alt="Morning Circle"
+               class="w-full h-48 object-cover 
+                      hover:scale-110 transition-transform duration-500">
+        </div>
+
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-2">
+            Morning Circle
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Songs, greetings and group bonding to start the day happily.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white dark:bg-gray-900 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="overflow-hidden">
+          <img src="images\img3.avif"
+               alt="Learning Time"
+               class="w-full h-48 object-cover 
+                      hover:scale-110 transition-transform duration-500">
+        </div>
+
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-2">
+            Learning Time
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Interactive activities that enhance creativity and early education.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white dark:bg-gray-900 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="overflow-hidden">
+          <img src="images\img4.avif"
+               alt="Healthy Meals"
+               class="w-full h-48 object-cover 
+                      hover:scale-110 transition-transform duration-500">
+        </div>
+
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-2">
+            Healthy Meals
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Nutritious and balanced meals prepared with care.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white dark:bg-gray-900 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="overflow-hidden">
+          <img src="images\img5.avif"
+               alt="Nap Time"
+               class="w-full h-48 object-cover 
+                      hover:scale-110 transition-transform duration-500">
+        </div>
+
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-2">
+            Nap & Relax
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Quiet rest time to recharge and stay refreshed.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+         
+<section class="py-16 
+                bg-white dark:bg-gray-900 
+                transition-colors duration-500">
+
+  <div class="container mx-auto px-4 max-w-7xl">
+
+    <h2 class="text-4xl font-bold 
+               text-black dark:text-pink-400 
+               text-center mb-12 transition-colors duration-300">
+      Why Choose Our GrowwCare?
+    </h2>
+
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+      <!-- Feature Card -->
+      <div class="flex flex-col items-center text-center p-6 
+                  bg-white dark:bg-gray-800
+                  border border-gray-200 dark:border-gray-700
+                  rounded-xl shadow-sm 
+                  hover:shadow-2xl hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="bg-pink-100 dark:bg-pink-900/40 
+                    text-pink-600 dark:text-pink-400 
+                    rounded-full p-4 mb-4 
+                    transition-colors duration-300">
+
+          <svg class="w-10 h-10 mx-auto" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"
+               viewBox="0 0 24 24">
+            <path d="M12 20l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 12v8"></path>
+            <path d="M3 10v6"></path>
+            <path d="M21 10v6"></path>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2 
+                   text-gray-800 dark:text-white">
+          Safe & Secure
+        </h3>
+
+        <p class="text-gray-600 dark:text-gray-400">
+          Your child’s safety is our top priority with secure premises.
+        </p>
+      </div>
+
+       <div class="flex flex-col items-center text-center p-6 
+                  bg-white dark:bg-gray-800
+                  border border-gray-200 dark:border-gray-700
+                  rounded-xl shadow-sm 
+                  hover:shadow-2xl hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="bg-pink-100 dark:bg-pink-900/40 
+                    text-pink-600 dark:text-pink-400 
+                    rounded-full p-4 mb-4 
+                    transition-colors duration-300">
+
+          <svg class="w-10 h-10 mx-auto" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"
+               viewBox="0 0 24 24">
+            <path d="M12 20l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 12v8"></path>
+            <path d="M3 10v6"></path>
+            <path d="M21 10v6"></path>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2 
+                   text-gray-800 dark:text-white">
+         Flexible Hours
+        </h3>
+
+        <p class="text-gray-600 dark:text-gray-400">
+We offer convenient timings to fit your family’s busy schedule.        </p>
+      </div>
+
+      
+       <div class="flex flex-col items-center text-center p-6 
+                  bg-white dark:bg-gray-800
+                  border border-gray-200 dark:border-gray-700
+                  rounded-xl shadow-sm 
+                  hover:shadow-2xl hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="bg-pink-100 dark:bg-pink-900/40 
+                    text-pink-600 dark:text-pink-400 
+                    rounded-full p-4 mb-4 
+                    transition-colors duration-300">
+
+          <svg class="w-10 h-10 mx-auto" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"
+               viewBox="0 0 24 24">
+            <path d="M12 20l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 12v8"></path>
+            <path d="M3 10v6"></path>
+            <path d="M21 10v6"></path>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2 
+                   text-gray-800 dark:text-white">
+Experienced Caregivers        </h3>
+
+        <p class="text-gray-600 dark:text-gray-400">
+Certified professionals dedicated to nurturing your child’s growth.        </p>
+      </div>
+
+       <div class="flex flex-col items-center text-center p-6 
+                  bg-white dark:bg-gray-800
+                  border border-gray-200 dark:border-gray-700
+                  rounded-xl shadow-sm 
+                  hover:shadow-2xl hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="bg-pink-100 dark:bg-pink-900/40 
+                    text-pink-600 dark:text-pink-400 
+                    rounded-full p-4 mb-4 
+                    transition-colors duration-300">
+
+          <svg class="w-10 h-10 mx-auto" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"
+               viewBox="0 0 24 24">
+            <path d="M12 20l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 12v8"></path>
+            <path d="M3 10v6"></path>
+            <path d="M21 10v6"></path>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2 
+                   text-gray-800 dark:text-white">
+Educational Activities        </h3>
+
+        <p class="text-gray-600 dark:text-gray-400">
+Fun and engaging programs to stimulate learning and creativity.       </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="py-20 
+                bg-white dark:bg-gray-900 
+                transition-colors duration-500">
+
+  <div class="container mx-auto px-4 max-w-7xl">
+
+    <!-- Section Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold 
+                 text-gray-900 dark:text-white mb-4">
+        Meet Our Caring Team 
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Our experienced and loving caregivers create a safe, joyful, and
+        nurturing environment for every child.
+      </p>
+    </div>
+
+    <!-- Team Cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Caregiver Card -->
+      <div class="group bg-pink-50 dark:bg-gray-800 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <!-- Image -->
+        <div class="overflow-hidden">
+          <img src="images\img6.avif"
+               alt="Caregiver"
+               class="w-full h-64 object-cover
+                      group-hover:scale-110
+                      transition-transform duration-500">
+        </div>
+
+        <!-- Content -->
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-1">
+            Ananya Sharma
+          </h3>
+          <p class="text-pink-600 dark:text-pink-400 text-sm mb-3">
+            Lead Caregiver
+          </p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            8+ years of experience in early childhood care and development.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-pink-50 dark:bg-gray-800 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="overflow-hidden">
+          <img src="images\img7.webp"
+               alt="Caregiver"
+               class="w-full h-64 object-cover
+                      group-hover:scale-110
+                      transition-transform duration-500">
+        </div>
+
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-1">
+            Priya Nair
+          </h3>
+          <p class="text-pink-600 dark:text-pink-400 text-sm mb-3">
+            Child Educator
+          </p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Specializes in creative learning and activity-based education.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group bg-pink-50 dark:bg-gray-800 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="overflow-hidden">
+          <img src="images\ig8.webp"
+               alt="Caregiver"
+               class="w-full h-64 object-cover
+                      group-hover:scale-110
+                      transition-transform duration-500">
+        </div>
+
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-1">
+           Lal Sharma
+          </h3>
+          <p class="text-pink-600 dark:text-pink-400 text-sm mb-3">
+            Activity Coordinator
+          </p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Ensures children stay active, playful, and socially engaged.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="group bg-pink-50 dark:bg-gray-800 
+                  rounded-2xl overflow-hidden
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="overflow-hidden">
+          <img src="images\img9.webp"
+               alt="Caregiver"
+               class="w-full h-64 object-cover
+                      group-hover:scale-110
+                      transition-transform duration-500">
+        </div>
+
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold 
+                     text-gray-800 dark:text-white mb-1">
+            Sneha Reddy
+          </h3>
+          <p class="text-pink-600 dark:text-pink-400 text-sm mb-3">
+            Nutrition Specialist
+          </p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Focuses on healthy meals and child nutrition planning.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-20 
+                bg-pink-50 dark:bg-gray-800 
+                transition-colors duration-500">
+
+  <div class="container mx-auto px-4 max-w-7xl">
+
+    <!-- Section Title -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold 
+                 text-gray-900 dark:text-white mb-4">
+        What Parents Say 
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Hear from families who trust GrowwCare with their little ones.
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Testimonial Card 1 -->
+      <div class="bg-white dark:bg-gray-900 
+                  p-8 rounded-2xl
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <!-- Stars -->
+        <div class="text-yellow-400 mb-4">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          “GrowwCare has been a blessing for our family. The caregivers are 
+          kind, attentive, and truly care about every child.”
+        </p>
+
+        <div class="flex items-center gap-4">
+          <img src="images\ig8.webp"
+               class="w-12 h-12 rounded-full object-cover"
+               alt="Parent">
+
+          <div>
+            <h4 class="font-semibold 
+                       text-gray-800 dark:text-white">
+              Krishnan
+            </h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              Mother of Aarav
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial Card 2 -->
+      <div class="bg-white dark:bg-gray-900 
+                  p-8 rounded-2xl
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="text-yellow-400 mb-4">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          “The structured daily routine and loving atmosphere helped my daughter 
+          grow more confident and happy.”
+        </p>
+
+        <div class="flex items-center gap-4">
+          <img src="images\img9.webp"
+               class="w-12 h-12 rounded-full object-cover"
+               alt="Parent">
+
+          <div>
+            <h4 class="font-semibold 
+                       text-gray-800 dark:text-white">
+              Riya Menon
+            </h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              Father of Diya
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial Card 3 -->
+      <div class="bg-white dark:bg-gray-900 
+                  p-8 rounded-2xl
+                  shadow-md hover:shadow-2xl
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+        <div class="text-yellow-400 mb-4">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          “Excellent facilities and caring staff. I feel completely at peace 
+          knowing my child is in safe hands.”
+        </p>
+
+        <div class="flex items-center gap-4">
+          <img src="images\img7.webp"
+               class="w-12 h-12 rounded-full object-cover"
+               alt="Parent">
+
+          <div>
+            <h4 class="font-semibold 
+                       text-gray-800 dark:text-white">
+              Anjali Rao
+            </h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              Mother of Riya
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-20 
+                bg-white dark:bg-gray-900 
+                transition-colors duration-500">
+
+  <div class="container mx-auto px-4 max-w-4xl">
+
+    <!-- Section Title -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold 
+                 text-gray-900 dark:text-white mb-4">
+        Frequently Asked Questions ❓
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300">
+        Everything you need to know about GrowwCare.
+      </p>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="space-y-4">
+
+      <!-- FAQ Item -->
+      <div class="border border-gray-200 dark:border-gray-700 
+                  rounded-xl overflow-hidden">
+
+        <button class="faq-toggle w-full flex justify-between items-center
+                       p-5 text-left font-semibold
+                       text-gray-800 dark:text-white
+                       hover:bg-pink-50 dark:hover:bg-gray-800
+                       transition-colors duration-300">
+          What are your working hours?
+          <span class="faq-icon transition-transform duration-300">+</span>
+        </button>
+
+        <div class="faq-content hidden px-5 pb-5 
+                    text-gray-600 dark:text-gray-400">
+          We operate Monday to Saturday from 8:00 AM to 6:00 PM.
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="border border-gray-200 dark:border-gray-700 
+                  rounded-xl overflow-hidden">
+
+        <button class="faq-toggle w-full flex justify-between items-center
+                       p-5 text-left font-semibold
+                       text-gray-800 dark:text-white
+                       hover:bg-pink-50 dark:hover:bg-gray-800
+                       transition-colors duration-300">
+          What age groups do you accept?
+          <span class="faq-icon transition-transform duration-300">+</span>
+        </button>
+
+        <div class="faq-content hidden px-5 pb-5 
+                    text-gray-600 dark:text-gray-400">
+          We welcome children from 1.5 years to 6 years old.
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="border border-gray-200 dark:border-gray-700 
+                  rounded-xl overflow-hidden">
+
+        <button class="faq-toggle w-full flex justify-between items-center
+                       p-5 text-left font-semibold
+                       text-gray-800 dark:text-white
+                       hover:bg-pink-50 dark:hover:bg-gray-800
+                       transition-colors duration-300">
+          Do you provide meals?
+          <span class="faq-icon transition-transform duration-300">+</span>
+        </button>
+
+        <div class="faq-content hidden px-5 pb-5 
+                    text-gray-600 dark:text-gray-400">
+          Yes, we provide healthy and nutritious meals prepared under hygienic conditions.
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="border border-gray-200 dark:border-gray-700 
+                  rounded-xl overflow-hidden">
+
+        <button class="faq-toggle w-full flex justify-between items-center
+                       p-5 text-left font-semibold
+                       text-gray-800 dark:text-white
+                       hover:bg-pink-50 dark:hover:bg-gray-800
+                       transition-colors duration-300">
+          Is there CCTV monitoring?
+          <span class="faq-icon transition-transform duration-300">+</span>
+        </button>
+
+        <div class="faq-content hidden px-5 pb-5 
+                    text-gray-600 dark:text-gray-400">
+          Yes, our facility is fully monitored to ensure safety and security.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script>
+  const faqButtons = document.querySelectorAll(".faq-toggle");
+
+  faqButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector(".faq-icon");
+
+      content.classList.toggle("hidden");
+      icon.textContent = content.classList.contains("hidden") ? "+" : "−";
+    });
+  });
+</script>
+
+
+
+
+<section class="py-20 
+                bg-pink-600 
+                dark:from-pink-700 dark:to-purple-800
+                transition-colors duration-500">
+
+  <div class="container mx-auto px-4 max-w-6xl text-center">
+
+    <h2 class="text-4xl md:text-5xl font-bold 
+               text-white mb-6">
+      Give Your Child The Best Start 
+    </h2>
+
+    <p class="text-lg md:text-xl 
+              text-pink-100 dark:text-pink-200 
+              max-w-2xl mx-auto mb-10">
+      Join GrowwCare today and let your child learn, grow, and thrive 
+      in a safe and loving environment.
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex flex-col sm:flex-row 
+                justify-center gap-6">
+
+      <!-- Enroll Button -->
+      <a href="contact.html"
+         class="px-8 py-4 bg-white text-pink-600 
+                font-semibold rounded-xl
+                shadow-lg hover:shadow-2xl
+                hover:scale-105 active:scale-95
+                transition-all duration-300">
+        <i class="fas fa-child mr-2"></i> Enroll Now
+      </a>
+
+      <!-- Visit Button -->
+      <a href="programdetails.html"
+         class="px-8 py-4 
+                bg-transparent border-2 border-white
+                text-white font-semibold rounded-xl
+                hover:bg-white hover:text-pink-600
+                hover:scale-105 active:scale-95
+                transition-all duration-300">
+        <i class="fas fa-calendar-check mr-2"></i> Book a Visit
+      </a>
+
+    </div>
+
+  </div>
+</section>
+   
+        <div id="footer"></div>
+<script src="navbar.js"> </script>
+        <script src="footer.js"> </script>
+
+ </body>
+ </html>

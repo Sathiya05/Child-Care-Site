@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Login</title>
+            <link rel="icon" href="growwpark_logo.jpg">
+
+  <!-- Tailwind via CDN (v3) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;500;600;700&display=swap');
+    * {
+      font-family: 'Quicksand', sans-serif;
+    }
+    /* focus ring pink-600 */
+    .focus-ring-pink:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(219, 39, 119, 0.15);
+      border-color: #db2777;
+    }
+    /* little dots pattern (used in light mode) */
+    .little-dots {
+      background-image: radial-gradient(#fbcfe8 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+    }
+    /* dark mode dots - subtle pink dots on dark bg */
+    .dark-dots {
+      background-image: radial-gradient(#831843 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+    }
+    /* smooth transitions for theme switching */
+    body, div, button, input, a, p, h2, h3, span, label, svg {
+      transition: background-color 0.3s ease, border-color 0.2s ease, color 0.2s ease, fill 0.2s ease;
+    }
+    /* RTL specific overrides */
+    html[dir="rtl"] .flex-row {
+      flex-direction: row-reverse;
+    }
+    html[dir="rtl"] .lg\:flex-row {
+      flex-direction: row-reverse;
+    }
+    html[dir="rtl"] .ml-2 {
+      margin-left: 0;
+      margin-right: 0.5rem;
+    }
+    html[dir="rtl"] .mr-2 {
+      margin-right: 0;
+      margin-left: 0.5rem;
+    }
+    html[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+      --tw-space-x-reverse: 1;
+    }
+    html[dir="rtl"] .absolute.right-4 {
+      right: auto;
+      left: 1rem;
+    }
+    html[dir="rtl"] .rtl\:left-4 {
+      left: 1rem;
+      right: auto;
+    }
+    html[dir="rtl"] .rtl\:right-auto {
+      right: auto;
+    }
+    html[dir="rtl"] .rtl\:text-right {
+      text-align: right;
+    }
+    html[dir="rtl"] .rtl\:flex-row-reverse {
+      flex-direction: row-reverse;
+    }
+    html[dir="rtl"] .rtl\:lg\:text-right {
+      text-align: right;
+    }
+    html[dir="rtl"] .rtl\:lg\:justify-end {
+      justify-content: flex-end;
+    }
+    /* Fix for dark mode */
+    .dark .bg-white {
+      background-color: #1f2937 !important; /* gray-800 */
+    }
+    .dark .bg-white\/90 {
+      background-color: rgba(31, 41, 55, 0.9) !important; /* gray-800/90 */
+    }
+    .dark .bg-pink-50 {
+      background-color: #1f2937 !important;
+    }
+    .dark .bg-pink-50\/50 {
+      background-color: rgba(31, 41, 55, 0.5) !important;
+    }
+    .dark .text-gray-800 {
+      color: #f3f4f6 !important; /* gray-100 */
+    }
+    .dark .text-black {
+      color: #f3f4f6 !important;
+    }
+    .dark #login-panel {
+      background-color: #1f2937 !important; /* gray-800 */
+    }
+    .dark #main-card {
+      background-color: #111827 !important; /* gray-900 */
+      border-color: #9d174d !important; /* pink-800 */
+    }
+    @media (max-width:420px){
+        .rightside{
+            display:none !important;
+        }
+    }
+      @media (max-width:820px){
+        .rightside{
+            display:none !important;
+        }
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 transition-colors duration-300 bg-pink-50 little-dots"
+      id="theme-body">
+  
+  <!-- MAIN CARD - fully responsive, theme-aware, RTL ready -->
+  <div class="w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden relative transition-all duration-300 bg-white/90 backdrop-blur-sm border border-pink-100"
+       id="main-card">
+    
+    <!-- ===== THEME & RTL CONTROL BUTTONS ===== -->
+    <div class="absolute top-4 right-4 z-30 flex items-center gap-2 rtl:left-4 rtl:right-auto" id="control-panel">
+      <!-- RTL / LTR toggle button -->
+      <button id="rtl-toggle" class="bg-white border border-pink-200 text-pink-600 hover:bg-pink-50 p-2.5 rounded-full shadow-md transition-all duration-200 flex items-center justify-center group"
+              aria-label="Toggle RTL/LTR">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:scale-110" 
+             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        <span class="sr-only">Switch RTL/LTR</span>
+      </button>
+      
+      <!-- Dark / Light toggle button -->
+      <button id="theme-toggle" class="bg-white border border-pink-200 text-pink-600 hover:bg-pink-50 p-2.5 rounded-full shadow-md transition-all duration-200 flex items-center justify-center group"
+              aria-label="Toggle dark/light mode">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:rotate-12" 
+             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <!-- Sun icon (visible in light mode) -->
+          <path id="sun-icon" class="block" stroke-linecap="round" stroke-linejoin="round" 
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
+          <!-- Moon icon (hidden by default) -->
+          <path id="moon-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" 
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+        <span class="sr-only">Toggle theme</span>
+      </button>
+    </div>
+  
+    <!-- flex container -->
+    <div class="flex flex-col lg:flex-row" id="main-flex">
+      
+      <!-- LEFT: Login form -->
+      <div class="w-full lg:w-1/2 p-6 sm:p-8 md:p-10 transition-colors bg-white/90" id="login-panel">
+        
+        <!-- logo area -->
+        <div class="flex items-center gap-2 mb-6 sm:mb-8">
+          <span class="text-xl font-bold text-pink-600 drop-shadow-sm"><a href="index.html">GrowwCare</a></span>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-1">Welcome back, caregiver</h2>
+        <p class="text-gray-500 mb-6 sm:mb-8 text-sm sm:text-base">Sign in to manage daily care & little moments</p>
+
+        <!-- login form -->
+        <form class="space-y-5">
+          <!-- Email field -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">
+              <span class="flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span class="text-gray-800">Email</span>
+              </span>
+            </label>
+            <input type="email" placeholder="parent@littlebloom.com" 
+                   class="w-full px-4 py-3 border rounded-xl transition-all
+                          bg-pink-50/50 border-pink-200 
+                          placeholder:text-pink-300 text-gray-800
+                          focus-ring-pink focus:border-pink-600">
+          </div>
+
+          <!-- Password field -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">
+              <span class="flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span class="text-gray-800">Password</span>
+              </span>
+            </label>
+            <input type="password" placeholder="••••••••" 
+                   class="w-full px-4 py-3 border rounded-xl transition-all
+                          bg-pink-50/50 border-pink-200 
+                          placeholder:text-pink-300 text-gray-800
+                          focus-ring-pink focus:border-pink-600">
+          </div>
+
+          <!-- remember & forgot row -->
+          <div class="flex flex-wrap items-center justify-between gap-2 text-sm">
+            <label class="flex items-center gap-2 text-gray-600 cursor-pointer">
+              <input type="checkbox" checked class="w-4 h-4 rounded border-pink-400 text-pink-600 focus:ring-pink-300 transition">
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="text-pink-600 hover:text-pink-800 font-medium hover:underline underline-offset-2 transition">Forgot password?</a>
+          </div>
+
+          <!-- login button -->
+          <button class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3.5 px-4 rounded-xl  hover:shadow-pink-300 transition duration-200 flex items-center justify-center gap-2 text-base sm:text-lg mt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            </svg>
+            Login 
+          </button>
+
+          <!-- Divider "or" -->
+          <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-pink-200"></div>
+            </div>
+            <div class="relative flex justify-center text-xs sm:text-sm">
+              <span class="px-4 bg-white text-pink-500 font-medium">or sign in with</span>
+            </div>
+          </div>
+
+          <!-- Social buttons -->
+          <div class="flex flex-col xs:flex-row gap-3">
+            <button class="flex-1 flex items-center justify-center gap-2 border rounded-xl transition shadow-sm py-3 px-4
+                          border-pink-300 bg-white hover:bg-pink-50 text-gray-700 font-medium">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.99h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.99C18.343 21.128 22 16.991 22 12z" fill="#1877F2"/>
+              </svg>
+              <span class="text-sm text-gray-800">Facebook</span>
+            </button>
+            <button class="flex-1 flex items-center justify-center gap-2 border rounded-xl transition shadow-sm py-3 px-4
+                          border-pink-300 bg-white hover:bg-pink-50 text-gray-700 font-medium">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              <span class="text-sm text-gray-800">Google</span>
+            </button>
+          </div>
+
+          <!-- Sign up link -->
+          <p class="text-center text-gray-600 pt-2 text-sm sm:text-base">
+            Don't have an account? 
+            <a href="signup.html" class="font-bold text-pink-600 hover:text-pink-800 underline decoration-pink-300 underline-offset-2 transition">Sign up for care</a>
+          </p>
+        </form>
+      </div>
+
+      <!-- RIGHT SIDE: Daily care welcome -->
+      <div class="rightside w-full lg:w-1/2 bg-gradient-to-br from-pink-500 to-pink-600 p-6 sm:p-8 md:p-10 flex flex-col justify-center relative overflow-hidden"
+           id="welcome-panel">
+        <!-- decorative circles -->
+        <div class="absolute top-0 right-0 -mt-8 -mr-8 w-40 h-40 bg-pink-300 rounded-full opacity-20"></div>
+        <div class="absolute bottom-0 left-0 -mb-8 -ml-8 w-40 h-40 bg-pink-400 rounded-full opacity-20"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full"></div>
+        
+        <!-- content -->
+        <div class="relative z-10 text-white text-center lg:text-left">
+          <h3 class="text-3xl sm:text-4xl font-bold mb-4 drop-shadow-md">Daily Care, Made Joyful</h3>
+          
+          <div class="space-y-4 text-pink-50 text-base sm:text-lg mb-8 max-w-md mx-auto lg:mx-0">
+            <p class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0 text-pink-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-5m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Naps, meals & milestones – all in one place.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0 text-pink-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span>Share daily updates with loved ones.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0 text-pink-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <span>Secure & private – just your circle.</span>
+            </p>
+          </div>
+
+          <div class="bg-white/20 backdrop-blur-sm inline-block px-6 py-3 rounded-full text-white font-medium shadow-lg">
+            ⭐ Trusted by 500+ daycare centers
+          </div>
+
+          <p class="mt-8 text-pink-100 text-sm italic">
+            Discover, share, and celebrate every little bloom.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ----- DARK/LIGHT THEME TOGGLE (FIXED) -----
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.getElementById('theme-body');
+      const mainCard = document.getElementById('main-card');
+      const loginPanel = document.getElementById('login-panel');
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+      
+      function setTheme(isDark) {
+        if (isDark) {
+          // Add dark class to body
+          body.classList.add('dark');
+          
+          // Update body background
+          body.classList.remove('bg-pink-50', 'little-dots');
+          body.classList.add('bg-gray-900', 'dark-dots');
+          
+          // Update main card - using direct style for reliability
+          mainCard.classList.remove('bg-white/90', 'border-pink-100');
+          mainCard.classList.add('bg-gray-900/95', 'border-pink-800');
+          mainCard.style.backgroundColor = '#111827';
+          mainCard.style.borderColor = '#9d174d';
+          
+          // Update login panel
+          loginPanel.classList.remove('bg-white/90');
+          loginPanel.classList.add('bg-gray-800');
+          loginPanel.style.backgroundColor = '#1f2937';
+          
+          // Update all white backgrounds in login panel
+          document.querySelectorAll('#login-panel .bg-white').forEach(el => {
+            el.classList.remove('bg-white');
+            el.classList.add('bg-gray-800');
+            el.style.backgroundColor = '#1f2937';
+          });
+          
+          // Update text colors
+          document.querySelectorAll('#login-panel .text-gray-800, #login-panel .text-gray-700, #login-panel .text-black').forEach(el => {
+            el.classList.add('text-gray-100');
+            el.classList.remove('text-gray-800', 'text-gray-700', 'text-black');
+          });
+          
+          document.querySelectorAll('#login-panel .text-gray-500, #login-panel .text-gray-600').forEach(el => {
+            el.classList.add('text-gray-400');
+            el.classList.remove('text-gray-500', 'text-gray-600');
+          });
+          
+          // Update buttons
+          document.querySelectorAll('#login-panel button.bg-white').forEach(el => {
+            el.classList.remove('bg-white', 'hover:bg-pink-50');
+            el.classList.add('bg-gray-800', 'hover:bg-gray-700');
+            el.style.backgroundColor = '#1f2937';
+          });
+          
+          // Update "or" divider background
+          document.querySelectorAll('#login-panel .bg-white.text-pink-500').forEach(el => {
+            el.classList.remove('bg-white');
+            el.classList.add('bg-gray-800');
+            el.style.backgroundColor = '#1f2937';
+          });
+          
+          // Update toggle buttons
+          document.querySelectorAll('#control-panel button').forEach(el => {
+            el.classList.remove('bg-white', 'hover:bg-pink-50');
+            el.classList.add('bg-gray-800', 'hover:bg-gray-700');
+            el.style.backgroundColor = '#1f2937';
+            el.style.borderColor = '#9d174d';
+          });
+          
+          // Switch icons
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+          
+        } else {
+          // Remove dark class
+          body.classList.remove('dark');
+          
+          // Restore body background
+          body.classList.remove('bg-gray-900', 'dark-dots');
+          body.classList.add('bg-pink-50', 'little-dots');
+          
+          // Restore main card
+          mainCard.classList.remove('bg-gray-900/95', 'border-pink-800');
+          mainCard.classList.add('bg-white/90', 'border-pink-100');
+          mainCard.style.backgroundColor = '';
+          mainCard.style.borderColor = '';
+          
+          // Restore login panel
+          loginPanel.classList.remove('bg-gray-800');
+          loginPanel.classList.add('bg-white/90');
+          loginPanel.style.backgroundColor = '';
+          
+          // Restore all white backgrounds
+          document.querySelectorAll('#login-panel .bg-gray-800').forEach(el => {
+            el.classList.remove('bg-gray-800');
+            el.classList.add('bg-white');
+            el.style.backgroundColor = '';
+          });
+          
+          // Restore text colors
+          document.querySelectorAll('#login-panel .text-gray-100').forEach(el => {
+            el.classList.remove('text-gray-100');
+            el.classList.add('text-gray-800');
+          });
+          
+          document.querySelectorAll('#login-panel .text-gray-400').forEach(el => {
+            el.classList.remove('text-gray-400');
+            el.classList.add('text-gray-600');
+          });
+          
+          // Restore buttons
+          document.querySelectorAll('#login-panel button.bg-gray-800').forEach(el => {
+            el.classList.remove('bg-gray-800', 'hover:bg-gray-700');
+            el.classList.add('bg-white', 'hover:bg-pink-50');
+            el.style.backgroundColor = '';
+          });
+          
+          // Restore "or" divider background
+          document.querySelectorAll('#login-panel .bg-gray-800.text-pink-500').forEach(el => {
+            el.classList.remove('bg-gray-800');
+            el.classList.add('bg-white');
+            el.style.backgroundColor = '';
+          });
+          
+          // Restore toggle buttons
+          document.querySelectorAll('#control-panel button').forEach(el => {
+            el.classList.remove('bg-gray-800', 'hover:bg-gray-700');
+            el.classList.add('bg-white', 'hover:bg-pink-50');
+            el.style.backgroundColor = '';
+            el.style.borderColor = '';
+          });
+          
+          // Switch icons
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      }
+
+      // Initial state: light
+      setTheme(false);
+
+      // Theme toggle click handler
+      themeToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isDark = !body.classList.contains('dark');
+        setTheme(isDark);
+        localStorage.setItem('littleBloomTheme', isDark ? 'dark' : 'light');
+      });
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem('littleBloomTheme');
+      if (savedTheme === 'dark') {
+        setTheme(true);
+      }
+
+      // ----- RTL / LTR TOGGLE (FIXED) -----
+      const rtlToggle = document.getElementById('rtl-toggle');
+      const htmlEl = document.documentElement;
+      
+      function setRTL(isRTL) {
+        if (isRTL) {
+          htmlEl.setAttribute('dir', 'rtl');
+          // Update icon for RTL
+          const svg = rtlToggle.querySelector('svg');
+          if (svg) {
+            svg.innerHTML = `
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            `;
+          }
+        } else {
+          htmlEl.setAttribute('dir', 'ltr');
+          // Update icon for LTR
+          const svg = rtlToggle.querySelector('svg');
+          if (svg) {
+            svg.innerHTML = `
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            `;
+          }
+        }
+      }
+
+      // Initial RTL state
+      setRTL(false);
+
+      rtlToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isRTL = htmlEl.getAttribute('dir') === 'rtl';
+        setRTL(!isRTL);
+        localStorage.setItem('littleBloomRTL', !isRTL ? 'rtl' : 'ltr');
+      });
+
+      // Load saved RTL preference
+      const savedRTL = localStorage.getItem('littleBloomRTL');
+      if (savedRTL === 'rtl') {
+        setRTL(true);
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,745 @@
+ <!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child DayCare home2</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+          <link rel="icon" href="growwpark_logo.jpg">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+                     <script>
+    tailwind.config = {
+      darkMode: "class",
+    };
+  </script>
+</head>
+<style>
+  @media(max-width:1280px){
+    .image{
+      display:none !important;
+    }
+  }
+</style>
+ <body>
+    <!-- navbar -->
+    <div id="navbar"></div>
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black/80 dark:bg-gray-900">
+
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350"
+         class="w-full h-full object-cover opacity-20 dark:opacity-10">
+  </div>
+
+
+
+
+  <!-- Floating Blobs -->
+  <div class="absolute top-20 left-20 w-40 h-40 bg-pink-300/40 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-20 w-52 h-52 bg-purple-300/40 rounded-full blur-3xl animate-pulse"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- LEFT CONTENT -->
+      <div class="text-center lg:text-left">
+
+        <h1 class="mt-20 text-4xl md:text-5xl lg:text-6xl font-extrabold 
+                   text-pink-600 dark:text-white leading-tight mb-6">
+          A Bright Beginning <br>
+          For Every Little Star 
+        </h1>
+
+        <p class="text-lg text-white dark:text-gray-300 mb-8 max-w-lg mx-auto lg:mx-0">
+          We create a loving and playful environment where children 
+          feel safe, confident, and excited to learn every single day.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="contact.html"
+             class="px-8 py-3 rounded-full bg-pink-500 hover:bg-pink-600 
+                    text-white font-semibold shadow-lg 
+                    hover:scale-105 transition duration-300">
+            Enroll Now
+          </a>
+
+          <a href="programs.html"
+             class="px-8 py-3 rounded-full border-2 border-pink-500
+                    text-white dark:text-pink-400
+                    hover:bg-pink-500 hover:text-white
+                    transition duration-300">
+            Explore Programs
+          </a>
+        </div>
+
+      </div>
+
+      <!-- RIGHT IMAGE STACK -->
+      <div class="relative flex justify-center">
+
+        <!-- Back Image -->
+        <div class="image absolute -left-6 top-10 hidden md:block">
+          <img src="images\play4.avif"
+               class="w-48 h-64 object-cover rounded-3xl shadow-xl 
+                      rotate-[-8deg] hover:rotate-0 transition duration-500">
+        </div>
+
+        <!-- Main Image -->
+        <div class="relative z-10">
+          <img src="images\play2.avif"
+               class="w-64 md:w-80 h-80 md:h-96 object-cover 
+                      rounded-3xl shadow-2xl 
+                      hover:scale-105 transition duration-500">
+        </div>
+
+        <!-- Front Small Image -->
+        <div class="image absolute -right-6 bottom-10 hidden md:block">
+          <img src="images\play3.avif"
+               class="w-40 h-52 object-cover rounded-3xl shadow-xl 
+                      rotate-[8deg] hover:rotate-0 transition duration-500">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="relative py-20 bg-gradient-to-br 
+                from-pink-50 via-white to-purple-50
+                dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 
+                transition duration-500">
+
+  <div class="container mx-auto px-6">
+
+    <!-- Section Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Our Daily Activities
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Every day is filled with fun, learning, creativity, and care 
+        designed to help children grow happily.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Card 1 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl">
+
+        <img src="images\creative playing.avif"
+             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/40 
+                    group-hover:bg-black/60 
+                    transition duration-500"></div>
+
+        <!-- Content -->
+        <div class="absolute bottom-6 left-6 text-white">
+          <h3 class="text-2xl font-bold mb-2">Creative Play</h3>
+          <p class="text-sm text-gray-200">
+            Arts, crafts & imagination building activities.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl">
+
+        <img src="images\early learning.avif"
+             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    group-hover:bg-black/60 
+                    transition duration-500"></div>
+
+        <div class="absolute bottom-6 left-6 text-white">
+          <h3 class="text-2xl font-bold mb-2">Early Learning</h3>
+          <p class="text-sm text-gray-200">
+            Numbers, letters & cognitive development.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-xl">
+
+        <img src="images\photo-1440288736878-766bd5839edb.avif"
+             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    group-hover:bg-black/60 
+                    transition duration-500"></div>
+
+        <div class="absolute bottom-6 left-6 text-white">
+          <h3 class="text-2xl font-bold mb-2">Outdoor Fun</h3>
+          <p class="text-sm text-gray-200">
+            Physical play & social interaction time.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="py-20 bg-white dark:bg-gray-900 transition duration-500">
+
+  <div class="container mx-auto px-6">
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- LEFT IMAGE -->
+      <div class="relative group">
+
+
+        <img src="images\play3.avif"
+             class="relative rounded-3xl shadow-2xl 
+                    w-full h-[400px] object-cover
+                    group-hover:scale-105 transition duration-500">
+
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div>
+
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">
+          Why Parents Trust GrowwCare 
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-300 mb-8">
+          We provide a warm, safe and structured environment 
+          where children feel loved, confident and inspired to explore.
+        </p>
+
+        <!-- Features List -->
+        <div class="space-y-6">
+
+          <div class="flex items-start gap-4 group">
+            <div class="w-12 h-12 flex items-center justify-center 
+                        rounded-full bg-pink-100 dark:bg-pink-500/20 
+                        text-pink-600 dark:text-pink-400 
+                        group-hover:scale-110 transition duration-300">
+              ✓
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 dark:text-white">
+                Certified & Caring Staff
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">
+                Experienced caregivers focused on every child’s well-being.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 group">
+            <div class="w-12 h-12 flex items-center justify-center 
+                        rounded-full bg-purple-100 dark:bg-purple-500/20 
+                        text-purple-600 dark:text-purple-400 
+                        group-hover:scale-110 transition duration-300">
+              ✓
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 dark:text-white">
+                Structured Daily Programs
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">
+                Balanced learning, playtime and creative development.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 group">
+            <div class="w-12 h-12 flex items-center justify-center 
+                        rounded-full bg-blue-100 dark:bg-blue-500/20 
+                        text-blue-600 dark:text-blue-400 
+                        group-hover:scale-110 transition duration-300">
+              ✓
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 dark:text-white">
+                Safe & Hygienic Environment
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">
+                Clean facilities and secure premises for peace of mind.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-10">
+          <a href="about.html"
+             class="px-8 py-3 rounded-full bg-pink-500 hover:bg-pink-600 
+                    text-white font-semibold shadow-lg 
+                    hover:scale-105 transition duration-300">
+            Learn More About Us
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="py-20 bg-pink-50 dark:bg-gray-900 transition-colors duration-500">
+  <div class="container mx-auto px-6 max-w-6xl">
+
+    <!-- Section Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-4">
+        A Day at GrowwCare
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Every day is thoughtfully planned to balance learning, play,
+        creativity, and rest for your child’s healthy development.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+
+      <!-- Vertical Line -->
+      <div class="hidden md:block absolute left-1/2 top-0 
+                  transform -translate-x-1/2 
+                  w-1 bg-pink-200 dark:bg-gray-700 h-full">
+      </div>
+
+      <div class="space-y-12">
+
+        <!-- Item 1 -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+          
+          <div class="md:text-right md:pr-12">
+            <h3 class="text-2xl font-semibold text-pink-600 dark:text-pink-400">
+              8:30 AM – Welcome Time
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mt-3">
+              Warm greetings, free play and social bonding to start the day with smiles.
+            </p>
+          </div>
+
+          <div class="mt-6 md:mt-0 md:pl-12">
+            <div class="bg-white dark:bg-gray-800 
+                        p-6 rounded-2xl shadow-lg 
+                        hover:shadow-xl transition duration-300">
+              <p class="text-gray-600 dark:text-gray-300">
+                Friendly staff ensure smooth drop-offs and a comforting
+                environment for children.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Item 2 -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+
+          <div class="order-2 md:order-1 mt-6 md:mt-0 md:pr-12">
+            <div class="bg-white dark:bg-gray-800 
+                        p-6 rounded-2xl shadow-lg 
+                        hover:shadow-xl transition duration-300">
+              <p class="text-gray-600 dark:text-gray-300">
+                Engaging activities that build creativity,
+                motor skills, and confidence.
+              </p>
+            </div>
+          </div>
+
+          <div class="order-1 md:order-2 md:text-left md:pl-12">
+            <h3 class="text-2xl font-semibold text-pink-600 dark:text-pink-400">
+              10:00 AM – Learning & Activities
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mt-3">
+              Storytelling, art, music, and interactive lessons.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Item 3 -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+          
+          <div class="md:text-right md:pr-12">
+            <h3 class="text-2xl font-semibold text-pink-600 dark:text-pink-400">
+              1:00 PM – Rest & Recharge
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mt-3">
+              Quiet time and nap sessions in a calm, safe space.
+            </p>
+          </div>
+
+          <div class="mt-6 md:mt-0 md:pl-12">
+            <div class="bg-white dark:bg-gray-800 
+                        p-6 rounded-2xl shadow-lg 
+                        hover:shadow-xl transition duration-300">
+              <p class="text-gray-600 dark:text-gray-300">
+                Balanced routines help children feel refreshed
+                and ready for afternoon fun.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Item 4 -->
+        <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+
+          <div class="order-2 md:order-1 mt-6 md:mt-0 md:pr-12">
+            <div class="bg-white dark:bg-gray-800 
+                        p-6 rounded-2xl shadow-lg 
+                        hover:shadow-xl transition duration-300">
+              <p class="text-gray-600 dark:text-gray-300">
+                Outdoor games, teamwork exercises,
+                and positive social interaction.
+              </p>
+            </div>
+          </div>
+
+          <div class="order-1 md:order-2 md:text-left md:pl-12">
+            <h3 class="text-2xl font-semibold text-pink-600 dark:text-pink-400">
+              3:00 PM – Play & Explore
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mt-3">
+              Fun outdoor activities to build strength and friendships.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="py-20 bg-white dark:bg-gray-900 transition duration-500">
+
+  <div class="container mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Our Happy Moments 
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        A glimpse into our joyful learning, creative play, and loving care.
+      </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\outdoor play.avif"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+            Outdoor Play 
+          </span>
+        </div>
+      </div>
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\story time.webp"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+            Story Time 
+          </span>
+        </div>
+      </div>
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\creative playing.avif"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+            Creative Art 
+          </span>
+        </div>
+      </div>
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\grp activities.avif"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+            Group Activities
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="container mt-20 mx-auto px-6">
+
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\img5.avif"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+            Rest and Nap
+          </span>
+        </div>
+      </div>
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\img4.avif"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+           Group Lunch 
+          </span>
+        </div>
+      </div>
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\img2.avif"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+            Games and cartoons
+          </span>
+        </div>
+      </div>
+
+      <!-- Image Item -->
+      <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+        <img src="images\img3.avif"
+             class="w-full h-60 object-cover 
+                    group-hover:scale-110 transition duration-500">
+
+        <div class="absolute inset-0 bg-black/40 
+                    opacity-0 group-hover:opacity-100 
+                    flex items-center justify-center
+                    transition duration-500">
+          <span class="text-white font-semibold text-lg">
+            Fun Activities
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="py-20 bg-gradient-to-b from-blue-50 to-pink-50 
+               dark:from-gray-900 dark:to-gray-800 
+               transition duration-500">
+
+  <div class="container mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Your Child’s Safety is Our Priority 
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        We maintain the highest standards of care, hygiene, and supervision 
+        to ensure a safe and nurturing environment.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Card 1 -->
+      <div class="bg-pink-200 dark:bg-gray-800 
+                  rounded-3xl p-8 text-center
+                  shadow-lg hover:shadow-2xl
+                  transform hover:-translate-y-3
+                  transition duration-500">
+
+        <div class="text-5xl mb-4"></div>
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">
+          Health Monitoring
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">
+          Daily health checks and trained staff ensure your child’s well-being.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-pink-200 dark:bg-gray-800 
+                  rounded-3xl p-8 text-center
+                  shadow-lg hover:shadow-2xl
+                  transform hover:-translate-y-3
+                  transition duration-500">
+
+        <div class="text-5xl mb-4"></div>
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">
+          Secure Environment
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">
+          CCTV monitoring and secure entry systems for complete safety.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-pink-200 dark:bg-gray-800 
+                  rounded-3xl p-8 text-center
+                  shadow-lg hover:shadow-2xl
+                  transform hover:-translate-y-3
+                  transition duration-500">
+
+        <div class="text-5xl mb-4"></div>
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">
+          Clean & Hygienic
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">
+          Sanitized play areas and clean facilities maintained daily.
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-pink-200 dark:bg-gray-800 
+                  rounded-3xl p-8 text-center
+                  shadow-lg hover:shadow-2xl
+                  transform hover:-translate-y-3
+                  transition duration-500">
+
+        <div class="text-5xl mb-4"></div>
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">
+          Trained Caregivers
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">
+          Certified and experienced staff dedicated to nurturing care.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="relative py-20 overflow-hidden 
+                bg-gradient-to-r 
+                from-pink-600 via-pink-500 to-pink-400
+                dark:from-gray-800 dark:via-gray-900 dark:to-black
+                transition duration-500">
+
+  <!-- Decorative Circles -->
+  <div class="absolute -top-20 -left-20 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+
+    <div class="max-w-4xl mx-auto text-center text-white">
+
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        Give Your Child the Best Start 
+      </h2>
+
+      <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+        Join GrowwCare today and let your little one experience
+        love, learning, and laughter in a safe nurturing environment.
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row gap-6 justify-center">
+
+        <a href="programdetails.html"
+           class="px-10 py-4 rounded-full bg-white text-black 
+                  font-semibold shadow-lg 
+                  hover:scale-105 hover:shadow-2xl
+                  transition duration-300">
+          Enroll Now
+        </a>
+
+        <a href="contact.html"
+           class="px-10 py-4 rounded-full border-2 border-white
+                  text-white font-semibold
+                  hover:bg-white hover:text-pink-600
+                  transition duration-300">
+          Contact Us
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+    
+        
+        <div id="footer"></div>
+<script src="navbar.js"> </script>
+        <script src="footer.js"> </script>
