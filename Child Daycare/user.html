@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>user dashboard</title>
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+              <link rel="icon" href="growwpark_logo.jpg">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.2s;
+        }
+        .bg-pink-600 { background-color: #db2777; }
+        .text-pink-600 { color: #db2777; }
+        .border-pink-600 { border-color: #db2777; }
+        .hover-bg-pink-700:hover { background-color: #be185d; }
+        
+        /* theme dark mode variables */
+        body.dark-mode {
+            background-color: #1f1a24;
+            color: #f3e8ff;
+        }
+        body.dark-mode .bg-white,
+        body.dark-mode .bg-white\/90,
+        body.dark-mode .bg-white\/80 {
+            background-color: #2d2a35 !important;
+            border-color: #4c3b4e !important;
+        }
+        body.dark-mode .text-gray-800,
+        body.dark-mode .text-gray-700 {
+            color: #fae8ff !important;
+        }
+        body.dark-mode .text-gray-500,
+        body.dark-mode .text-gray-600 {
+            color: #d8bfd8 !important;
+        }
+        body.dark-mode .border-pink-100,
+        body.dark-mode .border-pink-200 {
+            border-color: #6b4c5c !important;
+        }
+        body.dark-mode .bg-pink-50,
+        body.dark-mode .bg-pink-100,
+        body.dark-mode .bg-pink-50\/60 {
+            background-color: #4a3040 !important;
+        }
+        
+        /* RTL support */
+        body.rtl-mode {
+            direction: rtl;
+            text-align: right;
+        }
+        body.rtl-mode .ml-auto {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+        body.rtl-mode .ml-3 {
+            margin-left: 0 !important;
+            margin-right: 0.75rem !important;
+        }
+        body.rtl-mode .mr-2 {
+            margin-right: 0 !important;
+            margin-left: 0.5rem !important;
+        }
+        body.rtl-mode .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+            --tw-space-x-reverse: 1;
+        }
+        
+        /* sidebar transition */
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .dash-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .dash-card:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgba(219, 39, 119, 0.1); }
+        
+        /* overlay for mobile */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
+            z-index: 40;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* toggle buttons base style */
+        .toggle-base {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        /* RTL toggle active state */
+        .rtl-active {
+            background: #db2777;
+            color: white;
+            border-color: #db2777;
+        }
+        /* Dark mode toggle active state */
+        .dark-active {
+            background: #334155;
+            color: #fcd34d;
+            border-color: #db2777;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden bg-pink-50/40">
+
+    <!-- overlay for mobile sidebar -->
+    <div id="overlay" class="overlay lg:hidden"></div>
+
+    <!-- MAIN DASHBOARD LAYOUT -->
+    <div class="flex h-screen overflow-hidden bg-pink-50/40 relative">
+        
+        <!-- ============ SIDEBAR (GrowwCare logo) - HIDDEN ON MOBILE BY DEFAULT ============= -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 w-72 flex-shrink-0 bg-white shadow-2xl shadow-pink-600/5 flex flex-col h-full border-r border-pink-100 z-50 sidebar-transition lg:translate-x-0 -translate-x-full">
+            
+            <!-- logo area with GrowwCare -->
+            <div class="px-6 pt-8 pb-4 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl font-bold tracking-tight text-pink-600"><a href="index.html">GrowwCare</a></span>
+                </div>
+                <!-- close sidebar button (mobile only) -->
+                <button id="closeSidebarBtn" class="lg:hidden w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- TOGGLE BUTTONS INSIDE SIDEBAR - visible only on mobile -->
+            <div class="lg:hidden px-6 py-4 flex items-center gap-3 border-b border-pink-100">
+                <span class="text-sm font-medium text-gray-600 mr-2">Quick settings:</span>
+                <!-- TOGGLE BUTTON 1: RTL -->
+                <button id="mobileRtlToggleBtn" class="toggle-base bg-pink-50 text-pink-600 border border-pink-200 hover:bg-pink-100" title="Toggle RTL/LTR layout">
+                    <i class="fas fa-arrow-right-arrow-left text-lg"></i>
+                </button>
+                <!-- TOGGLE BUTTON 2: DARK/LIGHT -->
+                <button id="mobileDarkToggleBtn" class="toggle-base bg-pink-50 text-pink-600 border border-pink-200 hover:bg-pink-100" title="Toggle Dark/Light mode">
+                    <i class="fas fa-moon text-lg"></i>
+                </button>
+            </div>
+
+            <!-- navigation menu -->
+            <nav class="mt-2 flex-1 px-4 space-y-1.5 overflow-y-auto no-scrollbar">
+                <a href="#" class="flex items-center px-4 py-3.5 text-sm font-semibold bg-pink-50 text-pink-600 rounded-2xl border-l-4 border-pink-600">
+                    <i class="fas fa-flag-checkered w-6 text-lg"></i>
+                    <span class="ml-3">Daily reports</span>
+                    <span class="ml-auto bg-pink-200 text-pink-800 text-xs px-2 py-1 rounded-full">new</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3.5 text-sm font-medium text-gray-700 rounded-2xl hover:bg-pink-50 hover:text-pink-600 transition">
+                    <i class="fas fa-credit-card w-6 text-lg"></i>
+                    <span class="ml-3">Payments</span>
+                    <span class="ml-auto text-xs text-gray-400">invoice</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3.5 text-sm font-medium text-gray-700 rounded-2xl hover:bg-pink-50 hover:text-pink-600 transition">
+                    <i class="fas fa-calendar-check w-6 text-lg"></i>
+                    <span class="ml-3">Attendance</span>
+                    <span class="ml-auto bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded-full">2</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3.5 text-sm font-medium text-gray-700 rounded-2xl hover:bg-pink-50 hover:text-pink-600 transition">
+                    <i class="fas fa-child w-6 text-lg"></i>
+                    <span class="ml-3">Little one</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3.5 text-sm font-medium text-gray-700 rounded-2xl hover:bg-pink-50 hover:text-pink-600 transition">
+                    <i class="fas fa-message w-6 text-lg"></i>
+                    <span class="ml-3">Messages</span>
+                    <span class="ml-auto bg-pink-600 text-white text-xs px-1.5 py-0.5 rounded-full">3</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3.5 text-sm font-medium text-gray-700 rounded-2xl hover:bg-pink-50 hover:text-pink-600 transition">
+                    <i class="fas fa-images w-6 text-lg"></i>
+                    <span class="ml-3">Moments</span>
+                </a>
+                <div class="border-t border-pink-100 my-4"></div>
+                <a href="#" class="flex items-center px-4 py-3.5 text-sm font-medium text-gray-500 rounded-2xl hover:bg-pink-50">
+                    <i class="fas fa-gear w-6"></i>
+                    <span class="ml-3">Settings</span>
+                </a>
+                <a href="login.html" class="flex items-center px-4 py-3.5 text-sm font-medium text-gray-500 rounded-2xl hover:bg-pink-50">
+                    <i class="fas fa-sign-out w-6"></i>
+                    <span class="ml-3">Log out</span>
+                </a>
+            </nav>
+
+            <!-- bottom profile summary -->
+            <div class="border-t border-pink-100 p-5 mt-2 flex items-center">
+                <div class="relative">
+                    <img src="images/img6.avif" alt="parent" class="w-11 h-11 rounded-full object-cover border-2 border-pink-200">
+                    <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-semibold text-gray-800">Emily Parker</p>
+                    <p class="text-xs text-gray-500">parent · Mia's mom</p>
+                </div>
+                <i class="fas fa-ellipsis ml-auto text-pink-400"></i>
+            </div>
+        </aside>
+
+        <!-- ============ MAIN CONTENT ============= -->
+        <main class="flex-1 flex flex-col overflow-y-auto bg-[#fef6fb] bg-opacity-40 w-full lg:w-auto transition-colors">
+            
+            <!-- HEADER with HAMBURGER ON RIGHT -->
+            <header class="bg-white/90 backdrop-blur-sm border-b border-pink-100 px-4 sm:px-6 py-3 sticky top-0 z-30 flex items-center justify-between shadow-sm">
+                
+                <!-- LEFT GROUP: welcome text -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                        <h1 class="text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
+                            User Dashboard <span class="text-pink-600 font-bold"></span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- RIGHT GROUP: Desktop toggles + Hamburger (mobile only) -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- DESKTOP TOGGLE BUTTONS - only visible on desktop -->
+                    <div class="hidden lg:flex items-center gap-2 sm:gap-3">
+                        <button id="desktopRtlToggleBtn" class="toggle-base bg-pink-50 text-pink-600 border border-pink-200 hover:bg-pink-100" title="Toggle RTL/LTR layout">
+                            <i class="fas fa-arrow-right-arrow-left text-lg sm:text-xl"></i>
+                        </button>
+                        <button id="desktopDarkToggleBtn" class="toggle-base bg-pink-50 text-pink-600 border border-pink-200 hover:bg-pink-100" title="Toggle Dark/Light mode">
+                            <i class="fas fa-moon text-lg sm:text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- HAMBURGER BUTTON - on right side, mobile only - OPENS SIDEBAR -->
+                    <button id="hamburgerBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-pink-600 text-white border border-pink-200 hover:bg-pink-700 transition shadow-md">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- ========== DASHBOARD SECTIONS ========== -->
+            <div class="p-4 sm:p-5 md:p-6 lg:p-7 space-y-5 sm:space-y-7">
+                
+                <!-- quick stats cards -->
+                <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                    <div class="dash-card bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 flex items-center shadow-sm">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+                            <img src="images/lunch.avif" alt="report" class="w-7 h-7 sm:w-8 sm:h-8 object-contain">
+                        </div>
+                        <div class="ml-3 sm:ml-4">
+                            <p class="text-xs text-gray-500 font-medium">Today's report</p>
+                            <p class="text-lg sm:text-xl font-bold text-gray-800">Naps, meals</p>
+                            <span class="text-pink-600 text-xs font-semibold">mood: happy</span>
+                        </div>
+                    </div>
+                    <div class="dash-card bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 flex items-center shadow-sm">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+                            <img src="images/time.jpeg" alt="payment" class="w-7 h-7 sm:w-8 sm:h-8 object-contain">
+                        </div>
+                        <div class="ml-3 sm:ml-4">
+                            <p class="text-xs text-gray-500 font-medium">Outstanding</p>
+                            <p class="text-lg sm:text-xl font-bold text-gray-800">$245.00</p>
+                            <span class="text-pink-600 text-xs font-semibold">due Apr 12</span>
+                        </div>
+                    </div>
+                    <div class="dash-card bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 flex items-center shadow-sm">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+                            <img src="images/work.jpeg" alt="attendance" class="w-7 h-7 sm:w-8 sm:h-8 object-contain">
+                        </div>
+                        <div class="ml-3 sm:ml-4">
+                            <p class="text-xs text-gray-500 font-medium">This week</p>
+                            <p class="text-lg sm:text-xl font-bold text-gray-800">4/5 days</p>
+                            <span class="text-pink-600 text-xs font-semibold">+2 bonus hrs</span>
+                        </div>
+                    </div>
+                    <div class="dash-card bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 flex items-center shadow-sm">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+                            <img src="images/smusic.jpeg" alt="schedule" class="w-7 h-7 sm:w-8 sm:h-8 object-contain">
+                        </div>
+                        <div class="ml-3 sm:ml-4">
+                            <p class="text-xs text-gray-500 font-medium">Next</p>
+                            <p class="text-lg sm:text-xl font-bold text-gray-800">Wed 9:30</p>
+                            <span class="text-pink-600 text-xs font-semibold">music class</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SECTION 1: DAILY REPORT + ATTENDANCE -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
+                    <!-- Detailed report card -->
+                    <div class="lg:col-span-2 bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 shadow-sm dash-card">
+                        <div class="flex items-center justify-between mb-2">
+                            <h2 class="font-bold text-gray-800 flex items-center gap-2 text-sm sm:text-base">
+                                <i class="fas fa-flag-checkered text-pink-600"></i> Daily report – Mia
+                                <span class="bg-pink-600 text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-full">Apr 8, 2025</span>
+                            </h2>
+                            <a href="#" class="text-xs sm:text-sm text-pink-600 font-medium">view all <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-4 mt-2">
+                            <div class="md:w-1/3">
+                                <div class="rounded-2xl overflow-hidden border-2 border-pink-200 shadow-sm">
+                                    <img src="images/play1.avif" alt="child playing" class="w-full h-52 sm:h-36 object-cover">
+                                </div>
+                                <div class="flex mt-2 justify-around text-pink-600">
+                                    <span class="text-[10px] sm:text-xs bg-pink-50 px-2 sm:px-3 py-1 rounded-full"><i class="far fa-smile"></i> playful</span>
+                                    <span class="text-[10px] sm:text-xs bg-pink-50 px-2 sm:px-3 py-1 rounded-full"><i class="fas fa-apple-alt"></i> ate well</span>
+                                </div>
+                            </div>
+                            <div class="md:w-2/3 grid grid-cols-2 gap-2 sm:gap-3">
+                                <div class="bg-pink-50/60 p-2 sm:p-3 rounded-xl border border-pink-100">
+                                    <i class="fas fa-bed text-pink-600 text-base sm:text-lg"></i>
+                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1">Nap</p>
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">2h 15m</p>
+                                </div>
+                                <div class="bg-pink-50/60 p-2 sm:p-3 rounded-xl border border-pink-100">
+                                    <i class="fas fa-utensils text-pink-600 text-base sm:text-lg"></i>
+                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1">Meals</p>
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">3/3</p>
+                                </div>
+                                <div class="bg-pink-50/60 p-2 sm:p-3 rounded-xl border border-pink-100">
+                                    <i class="fas fa-droplet text-pink-600 text-base sm:text-lg"></i>
+                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1">Diaper</p>
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">5 changes</p>
+                                </div>
+                                <div class="bg-pink-50/60 p-2 sm:p-3 rounded-xl border border-pink-100">
+                                    <i class="fas fa-heart text-pink-600 text-base sm:text-lg"></i>
+                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1">Activity</p>
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">painting</p>
+                                </div>
+                                <div class="col-span-2 bg-pink-100/50 p-2 sm:p-3 rounded-xl border border-pink-200 flex items-center">
+                                    <i class="fas fa-pen text-pink-600 mr-2 text-xs sm:text-sm"></i>
+                                    <span class="text-[10px] sm:text-xs text-gray-700">Teacher's note: Mia shared toys today!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Attendance card -->
+                    <div class="bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 shadow-sm dash-card">
+                        <div class="flex justify-between items-center">
+                            <h2 class="font-bold text-gray-800 flex items-center text-sm sm:text-base"><i class="fas fa-calendar-alt text-pink-600 mr-2"></i> Attendance</h2>
+                            <span class="text-pink-600 text-[10px] sm:text-xs bg-pink-100 px-2 sm:px-3 py-1 rounded-full">schedule</span>
+                        </div>
+                        <div class="my-3 rounded-xl overflow-hidden h-20 sm:h-24 w-full object-cover">
+                            <img src="images/grp activities.avif" alt="happy kid" class="w-full h-full object-cover">
+                        </div>
+                        <div class="space-y-2 sm:space-y-3 mt-1">
+                            <div class="flex items-center justify-between text-xs sm:text-sm">
+                                <span class="text-gray-600"><i class="far fa-clock text-pink-500 mr-1"></i>Mon 8 Apr</span>
+                                <span class="font-semibold text-gray-800">9:00-16:00</span>
+                                <span class="bg-green-100 text-green-700 text-[10px] sm:text-xs px-2 py-0.5 rounded-full">checked</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs sm:text-sm">
+                                <span class="text-gray-600"><i class="far fa-clock text-pink-500 mr-1"></i>Tue 9 Apr</span>
+                                <span class="font-semibold text-gray-800">9:00-16:00</span>
+                                <span class="bg-yellow-100 text-yellow-700 text-[10px] sm:text-xs px-2 py-0.5 rounded-full">pending</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs sm:text-sm">
+                                <span class="text-gray-600"><i class="far fa-clock text-pink-500 mr-1"></i>Wed 10 Apr</span>
+                                <span class="font-semibold text-gray-800">9:00-12:00</span>
+                                <span class="bg-pink-100 text-pink-700 text-[10px] sm:text-xs px-2 py-0.5 rounded-full">half day</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-3 sm:mt-4 bg-pink-600 hover:bg-pink-700 text-white text-xs sm:text-sm font-medium py-2.5 sm:py-3 rounded-xl shadow-md shadow-pink-600/30 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-plus-circle"></i> Schedule attendance
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- SECTION 2: PAYMENTS + MOMENTS -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
+                    <div class="bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 shadow-sm dash-card lg:col-span-2">
+                        <div class="flex items-center justify-between">
+                            <h2 class="font-bold text-gray-800 flex items-center text-sm sm:text-base"><i class="fas fa-credit-card text-pink-600 mr-2"></i> Payments & billing</h2>
+                            <span class="bg-pink-100 text-pink-700 text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full">autopay on</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-2">
+                            <div class="sm:w-2/5">
+                                <div class="rounded-2xl overflow-hidden border border-pink-200 h-24 sm:h-28">
+                                    <img src="images/yment.avif" alt="payment" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="sm:w-3/5">
+                                <p class="text-xs sm:text-sm text-gray-600">April tuition</p>
+                                <p class="text-2xl sm:text-3xl font-bold text-gray-800">$520.00</p>
+                                <div class="flex items-center mt-1 text-xs sm:text-sm">
+                                    <span class="text-gray-500">paid via card</span>
+                                    <span class="text-green-600 font-semibold ml-1">receipt sent</span>
+                                </div>
+                                <div class="mt-3 flex gap-2 flex-wrap">
+                                    <button class="bg-pink-50 border border-pink-200 text-pink-700 px-3 sm:px-4 py-1.5 sm:py-2 text-xs rounded-full font-medium hover:bg-pink-100">View invoice</button>
+                                    <button class="bg-pink-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 text-xs rounded-full font-medium hover:bg-pink-700 shadow-sm flex items-center gap-1"><i class="fas fa-dollar-sign"></i> Make payment</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-[10px] sm:text-xs text-gray-500 border-t border-pink-100 pt-3 flex justify-between">
+                            <span><i class="fas fa-check-circle text-pink-500"></i> Last payment $495.00 - Mar 5</span>
+                            <a href="#" class="text-pink-600">history →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-3xl p-4 sm:p-5 border border-pink-200 shadow-sm dash-card">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 bg-pink-600 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-camera text-white text-xs sm:text-sm"></i>
+                            </div>
+                            <h2 class="font-bold text-gray-800 text-sm sm:text-base">Today's moments</h2>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 mt-3">
+                            <div class="rounded-xl overflow-hidden aspect-square border-2 border-pink-200">
+                                <img src="images/outdoor play.avif" class="w-full h-full object-cover">
+                            </div>
+                            <div class="rounded-xl overflow-hidden aspect-square border-2 border-pink-200">
+                                <img src="images/play2.avif" class="w-full h-full object-cover">
+                            </div>
+                            <div class="rounded-xl overflow-hidden aspect-square border-2 border-pink-200 relative">
+                                <img src="images/play4.avif" class="w-full h-full object-cover">
+                                <span class="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-[10px] sm:text-xs font-bold">+5</span>
+                            </div>
+                        </div>
+                        <p class="text-[10px] sm:text-xs text-gray-600 mt-2 flex items-center"><i class="fas fa-heart text-pink-400 mr-1"></i> 12 likes from caregivers</p>
+                        <button class="mt-2 w-full bg-white border border-pink-300 text-pink-700 py-2 rounded-xl text-xs sm:text-sm font-medium hover:bg-pink-100 transition">view gallery</button>
+                    </div>
+                </div>
+                
+                <!-- extra schedule + menu -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                    <div class="bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 flex items-center dash-card">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-pink-50 rounded-2xl flex items-center justify-center border-2 border-pink-200 p-2">
+                            <img src="images/attendance.webp" alt="schedule" class="w-12 h-12 sm:w-14 sm:h-14">
+                        </div>
+                        <div class="ml-4 sm:ml-5">
+                            <h3 class="font-bold text-gray-800 text-sm sm:text-base">Set attendance schedule</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 mt-1">Recurring or one-time</p>
+                            <button class="mt-2 bg-pink-600 text-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs shadow-md hover:bg-pink-700 flex items-center gap-1">
+                                <i class="fas fa-calendar-plus"></i> plan now
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-3xl p-4 sm:p-5 border border-pink-100 flex items-center dash-card">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-pink-50 rounded-2xl flex items-center justify-center border-2 border-pink-200 p-1">
+                            <img src="images/party.webp" alt="snack" class="w-12 h-12 sm:w-14 sm:h-14">
+                        </div>
+                        <div class="ml-4 sm:ml-5">
+                            <h3 class="font-bold text-gray-800 text-sm sm:text-base">This week's menu</h3>
+                            <p class="text-xs text-gray-600">organic friday: fruit party</p>
+                            <span class="inline-block mt-1 bg-pink-100 px-2 sm:px-3 py-1 rounded-full text-pink-700 text-[10px] sm:text-xs">allergy aware</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- milestone banner -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-4 sm:p-5 border border-pink-200 dash-card flex flex-wrap items-center justify-between">
+                    <div class="flex items-center gap-3 sm:gap-4">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-pink-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-rocket text-pink-700 text-xl sm:text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 text-sm sm:text-base">Mia's milestones</p>
+                            <p class="text-[10px] sm:text-xs text-gray-500">Learned 3 new words this week! "mama", "bubbles", "Groww"</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mt-2 sm:mt-0">
+                        <span class="bg-pink-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs rounded-full">view report</span>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="mt-auto text-center py-3 sm:py-4 text-[10px] sm:text-xs text-pink-400 border-t border-pink-100 mx-4 sm:mx-6">
+                <span>GrowwCare nurturing with parent dashboard</span>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- SIDEBAR / HAMBURGER - HAMBURGER OPENS SIDEBAR -----
+            const sidebar = document.getElementById('sidebar');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+            const overlay = document.getElementById('overlay');
+
+            // Ensure sidebar is closed on mobile by default
+            function setDefaultSidebarState() {
+                if (window.innerWidth < 1024) {
+                    // Mobile: sidebar hidden
+                    sidebar.classList.add('-translate-x-full');
+                    sidebar.classList.remove('translate-x-0');
+                    if (document.body.classList.contains('rtl-mode')) {
+                        sidebar.classList.add('translate-x-full');
+                        sidebar.classList.remove('-translate-x-full');
+                    }
+                } else {
+                    // Desktop: sidebar visible
+                    sidebar.classList.add('translate-x-0');
+                    sidebar.classList.remove('-translate-x-full', 'translate-x-full');
+                }
+            }
+            
+            // Call immediately
+            setDefaultSidebarState();
+
+            function openSidebar() {
+                if (window.innerWidth < 1024) {
+                    // Remove hidden class, add visible class
+                    if (document.body.classList.contains('rtl-mode')) {
+                        sidebar.classList.remove('translate-x-full');
+                        sidebar.classList.add('translate-x-0');
+                    } else {
+                        sidebar.classList.remove('-translate-x-full');
+                        sidebar.classList.add('translate-x-0');
+                    }
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    console.log('Sidebar opened'); // Debug
+                }
+            }
+
+            function closeSidebar() {
+                if (window.innerWidth < 1024) {
+                    if (document.body.classList.contains('rtl-mode')) {
+                        sidebar.classList.add('translate-x-full');
+                        sidebar.classList.remove('translate-x-0');
+                    } else {
+                        sidebar.classList.add('-translate-x-full');
+                        sidebar.classList.remove('translate-x-0');
+                    }
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    console.log('Sidebar closed'); // Debug
+                }
+            }
+
+            // HAMBURGER OPENS SIDEBAR - SIMPLE AND DIRECT
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Hamburger clicked'); // Debug
+                    openSidebar();
+                });
+            }
+            
+            if (closeSidebarBtn) {
+                closeSidebarBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeSidebar();
+                });
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    closeSidebar();
+                });
+            }
+
+            // Window resize handler
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    // Desktop: sidebar always visible
+                    sidebar.classList.add('translate-x-0');
+                    sidebar.classList.remove('-translate-x-full', 'translate-x-full');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else {
+                    // Mobile: if sidebar is open, keep it; otherwise keep it closed
+                    if (!sidebar.classList.contains('translate-x-0')) {
+                        setDefaultSidebarState();
+                    }
+                }
+            });
+
+            // ----- RTL TOGGLE (Desktop + Mobile inside sidebar) -----
+            function setupRtlToggle(btn) {
+                if (!btn) return;
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.body.classList.toggle('rtl-mode');
+                    
+                    // Update all RTL toggle buttons to match state
+                    const allRtlBtns = document.querySelectorAll('#desktopRtlToggleBtn, #mobileRtlToggleBtn');
+                    allRtlBtns.forEach(b => {
+                        if (document.body.classList.contains('rtl-mode')) {
+                            b.classList.add('rtl-active');
+                            b.style.background = '#db2777';
+                            b.style.color = 'white';
+                        } else {
+                            b.classList.remove('rtl-active');
+                            b.style.background = '';
+                            b.style.color = '';
+                        }
+                    });
+                    
+                    // Reset sidebar position based on mode
+                    if (window.innerWidth < 1024) {
+                        if (document.body.classList.contains('rtl-mode')) {
+                            sidebar.classList.add('translate-x-full');
+                            sidebar.classList.remove('-translate-x-full');
+                        } else {
+                            sidebar.classList.add('-translate-x-full');
+                            sidebar.classList.remove('translate-x-full');
+                        }
+                        sidebar.classList.remove('translate-x-0');
+                    }
+                });
+            }
+
+            // ----- DARK/LIGHT TOGGLE (Desktop + Mobile inside sidebar) -----
+            function setupDarkToggle(btn) {
+                if (!btn) return;
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.body.classList.toggle('dark-mode');
+                    
+                    const allDarkBtns = document.querySelectorAll('#desktopDarkToggleBtn, #mobileDarkToggleBtn');
+                    allDarkBtns.forEach(b => {
+                        if (document.body.classList.contains('dark-mode')) {
+                            b.classList.add('dark-active');
+                            b.style.background = '#334155';
+                            b.style.color = '#fcd34d';
+                            b.innerHTML = '<i class="fas fa-sun text-lg sm:text-xl"></i>';
+                        } else {
+                            b.classList.remove('dark-active');
+                            b.style.background = '';
+                            b.style.color = '';
+                            b.innerHTML = '<i class="fas fa-moon text-lg sm:text-xl"></i>';
+                        }
+                    });
+                });
+            }
+
+            // Initialize all toggle buttons
+            setupRtlToggle(document.getElementById('desktopRtlToggleBtn'));
+            setupRtlToggle(document.getElementById('mobileRtlToggleBtn'));
+            setupDarkToggle(document.getElementById('desktopDarkToggleBtn'));
+            setupDarkToggle(document.getElementById('mobileDarkToggleBtn'));
+
+        })();
+    </script>
+    <style>
+        @media (min-width: 480px) {
+            .xs\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        body.rtl-mode .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        body.rtl-mode .ml-3 {
+            margin-right: 0.75rem;
+            margin-left: 0;
+        }
+        body.rtl-mode .mr-2 {
+            margin-left: 0.5rem;
+            margin-right: 0;
+        }
+        body.rtl-mode .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+            --tw-space-x-reverse: 1;
+        }
+        
+        /* Debug outline - remove if not needed */
+        /* #sidebar { outline: 1px solid red; } */
+    </style>
+</body>
+</html>
