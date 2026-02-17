@@ -64,9 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <i id="darkIcon" class="fas fa-moon"></i>
         </button>
 
-        <!-- Mobile Button -->
+        <!-- Mobile Button with Hamburger/Close Icon -->
         <button id="mobileBtn" class="xl:hidden text-2xl text-gray-800 dark:text-pink-800">
-          <i class="fas fa-bars"></i>
+          <i id="mobileIcon" class="fas fa-bars"></i>
         </button>
       </div>
     </div>
@@ -242,25 +242,66 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ===============================
-     MOBILE MENU TOGGLE
+     MOBILE MENU TOGGLE WITH HAMBURGER/CLOSE ICON
   =============================== */
   const mobileBtn = document.getElementById("mobileBtn");
+  const mobileIcon = document.getElementById("mobileIcon");
   const mobileMenu = document.getElementById("mobileMenu");
 
-  mobileBtn?.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
+  mobileBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isHidden = mobileMenu.classList.toggle("hidden");
+    
+    // Toggle between hamburger and close icons
+    if (isHidden) {
+      mobileIcon.className = "fas fa-bars";
+    } else {
+      mobileIcon.className = "fas fa-times";
+      
+      // Close all mobile dropdowns when opening menu
+      mobileHomeMenu?.classList.add("hidden");
+      mobileDashMenu?.classList.add("hidden");
+      if (mobileHomeIcon) mobileHomeIcon.className = "fas fa-chevron-down text-xs";
+      if (mobileDashIcon) mobileDashIcon.className = "fas fa-chevron-down text-xs";
+    }
+  });
+
+  // Close mobile menu when clicking a link (optional)
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add("hidden");
+      mobileIcon.className = "fas fa-bars";
+      
+      // Close all mobile dropdowns
+      mobileHomeMenu?.classList.add("hidden");
+      mobileDashMenu?.classList.add("hidden");
+      if (mobileHomeIcon) mobileHomeIcon.className = "fas fa-chevron-down text-xs";
+      if (mobileDashIcon) mobileDashIcon.className = "fas fa-chevron-down text-xs";
+    });
   });
 
   /* ===============================
      CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
   =============================== */
-  document.addEventListener("click", () => {
+  document.addEventListener("click", (e) => {
+    // Don't close if clicking inside mobile menu or mobile button
+    if (mobileMenu?.contains(e.target) || mobileBtn?.contains(e.target)) {
+      return;
+    }
+    
     homeMenu?.classList.add("hidden");
     dashMenu?.classList.add("hidden");
     mobileHomeMenu?.classList.add("hidden");
     mobileDashMenu?.classList.add("hidden");
     if (mobileHomeIcon) mobileHomeIcon.className = "fas fa-chevron-down text-xs";
     if (mobileDashIcon) mobileDashIcon.className = "fas fa-chevron-down text-xs";
+    
+    // Close mobile menu when clicking outside
+    if (!mobileBtn?.contains(e.target)) {
+      mobileMenu?.classList.add("hidden");
+      if (mobileIcon) mobileIcon.className = "fas fa-bars";
+    }
   });
 
   /* ===============================
