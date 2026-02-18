@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <a href="about.html" class="px-3 py-2 text-gray-800 dark:text-black hover:text-pink-800 dark:hover:text-pink-400 transition-colors">About</a>
-      <a href="programs.html" class="px-3 py-2 text-gray-800 dark:text-black hover:text-pink-600 dark:hover:text-pink-400 transition-colors">Services</a>
-      <a href="classrooms.html" class="px-3 py-2 text-gray-800 dark:text-black hover:text-pink-600 dark:hover:text-pink-400 transition-colors">Programs</a>
+      <a href="services.html" class="px-3 py-2 text-gray-800 dark:text-black hover:text-pink-600 dark:hover:text-pink-400 transition-colors">Services</a>
+      <a href="programs.html" class="px-3 py-2 text-gray-800 dark:text-black hover:text-pink-600 dark:hover:text-pink-400 transition-colors">Programs</a>
       <a href="contact.html" class="px-3 py-2 text-gray-800 dark:text-black hover:text-pink-600 dark:hover:text-pink-400 transition-colors">Contact</a>
       
       <!-- Mobile Dashboard Dropdown -->
