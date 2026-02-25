@@ -1,3 +1,34 @@
+/* ===============================
+   DARK MODE - FIXED FOR PERSISTENCE ACROSS PAGES
+   =============================== */
+
+// This self-executing function runs BEFORE the page renders
+// Place this at the VERY TOP of your navbar.js file, outside DOMContentLoaded
+(function() {
+  try {
+    // Get theme from localStorage
+    let theme = localStorage.getItem('theme');
+    
+    // If no theme saved or invalid, default to light
+    if (theme !== 'dark' && theme !== 'light') {
+      theme = 'light';
+      localStorage.setItem('theme', 'light');
+    }
+    
+    // Apply theme to HTML element immediately
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  } catch (e) {
+    // Fallback to light if anything fails
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  }
+})();
+
+// Main DOM Content Loaded event
 document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.getElementById("navbar");
   if (!navbar) return;
@@ -44,12 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
 
-        <a href="login.html" class="px-4 py-2 bg-pink-600 hover:bg-pink-700 dark:bg-pink-500 dark:hover:bg-pink-600 text-white font-medium rounded-lg transition-colors">
-          Login
-        </a>
-        <a href="signup.html" class="px-4 py-2 bg-pink-600 hover:bg-pink-700 dark:bg-pink-500 dark:hover:bg-pink-600 text-white font-medium rounded-lg transition-colors">
-          Sign Up
-        </a>
+       
       </div>
 
       <!-- Right Controls - Desktop -->
@@ -63,6 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
         <button id="darkToggle" class="hidden xl:block text-xl text-gray-800 dark:text-pink-800">
           <i id="darkIcon" class="fas fa-moon"></i>
         </button>
+        
+        <!-- Login (RIGHT SIDE) -->
+        <a href="login.html" class="hidden xl:block px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white font-medium rounded-lg transition-colors">
+          Login
+        </a>
+
+        <!-- Sign Up (RIGHT SIDE) -->
+        <a href="signup.html" class="hidden xl:block px-4 py-2 bg-white hover:bg-pink-300 text-black font-medium rounded-lg transition-colors">
+          Sign Up
+        </a>
+
+      
 
         <!-- Mobile Button with Hamburger/Close Icon -->
         <button id="mobileBtn" class="xl:hidden text-2xl text-gray-800 dark:text-pink-800">
@@ -103,11 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
 
-      <div class="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-pink-300">
-        <a href="login.html" class="px-4 py-2 bg-pink-600 hover:bg-pink-700 dark:bg-pink-500 dark:hover:bg-pink-600 text-white font-medium rounded-lg text-center transition-colors">
+       <!-- Mobile Login & Signup (SAME AS BEFORE ABOVE TOGGLES) -->
+      <div class="flex flex-col space-y-2 pt-4 border-t border-gray-200">
+        <a href="login.html" class="px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white font-medium rounded-lg text-center transition-colors">
           Login
         </a>
-        <a href="signup.html" class="px-4 py-2 bg-pink-600 hover:bg-pink-700 dark:bg-pink-500 dark:hover:bg-pink-600 text-white font-medium rounded-lg text-center transition-colors">
+        <a href="signup.html" class="px-4 py-2 bg-white hover:bg-pink-300 text-black font-medium rounded-lg text-center transition-colors">
           Sign Up
         </a>
         
@@ -128,222 +167,31 @@ document.addEventListener("DOMContentLoaded", () => {
 `;
 
   /* ===============================
-     ACTIVE NAV LINK HIGHLIGHT
-  =============================== */
-  const currentPage = window.location.pathname.split("/").pop();
-  console.log('Current page:', currentPage); // For debugging
-
-  // Get all elements that need highlighting
-  const homeBtn = document.getElementById("homeBtn");
-  const mobileHomeBtn = document.getElementById("mobileHomeBtn");
-  const homeLinks = document.querySelectorAll(".home-link");
-  const allNavLinks = document.querySelectorAll("a[href]");
-  const navButtons = [homeBtn, mobileHomeBtn].filter(btn => btn); // Remove null values
-
-  // Define home pages (pages where Home button should be active)
-  const homePages = ['', 'index.html', 'home.html', 'home1.html', 'home2.html', './', '/'];
-  
-  // Check if current page is any home page
-  const isHomePageActive = homePages.includes(currentPage);
-
-  // FIRST: Remove all active classes from everything
-  allNavLinks.forEach(link => {
-    link.classList.remove("text-pink-600", "font-bold");
-  });
-  
-  navButtons.forEach(btn => {
-    if (btn) btn.classList.remove("text-pink-600", "font-bold");
-  });
-
-  // SECOND: Add active classes based on current page
-
-  // 1. Make Home buttons bold pink when on any home page
-  if (isHomePageActive) {
-    navButtons.forEach(btn => {
-      if (btn) btn.classList.add("text-pink-600", "font-bold");
-    });
-  }
-
-  // 2. Highlight the specific home link that matches current page
-  homeLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    
-    if (href === currentPage || 
-        (currentPage === '' && href === 'index.html') ||
-        (currentPage === 'index.html' && href === 'index.html') ||
-        (currentPage === 'home1.html' && href === 'index.html') ||
-        (currentPage === 'home2.html' && href === 'home2.html')) {
-      link.classList.add("text-pink-600", "font-bold");
-    }
-  });
-
-  // 3. Handle other nav links (About, Services, etc.)
-  allNavLinks.forEach(link => {
-    // Skip logo (first link with image/span)
-    if (link.querySelector('img') || link.querySelector('span')?.classList.contains('text-xl')) {
-      return;
-    }
-    
-    // Skip home links (already handled)
-    if (link.classList.contains('home-link')) return;
-    
-    const href = link.getAttribute('href');
-    
-    // Skip empty links and home pages
-    if (!href || homePages.includes(href)) return;
-    
-    // Highlight exact matches for other pages
-    if (href === currentPage) {
-      link.classList.add("text-pink-600", "font-bold");
-    }
-  });
-
-  /* ===============================
-     DESKTOP DROPDOWNS
-  =============================== */
-  const homeMenu = document.getElementById("homeMenu");
-  const dashBtn = document.getElementById("dashBtn");
-  const dashMenu = document.getElementById("dashMenu");
-
-  homeBtn?.addEventListener("click", e => {
-    e.stopPropagation();
-    homeMenu.classList.toggle("hidden");
-    dashMenu.classList.add("hidden");
-  });
-
-  dashBtn?.addEventListener("click", e => {
-    e.stopPropagation();
-    dashMenu.classList.toggle("hidden");
-    homeMenu.classList.add("hidden");
-  });
-
-  /* ===============================
-     MOBILE DROPDOWNS
-  =============================== */
-  const mobileHomeMenu = document.getElementById("mobileHomeMenu");
-  const mobileHomeIcon = document.getElementById("mobileHomeIcon");
-  const mobileDashMenu = document.getElementById("mobileDashMenu");
-  const mobileDashIcon = document.getElementById("mobileDashIcon");
-
-  mobileHomeBtn?.addEventListener("click", e => {
-    e.stopPropagation();
-    const isHidden = mobileHomeMenu.classList.toggle("hidden");
-    mobileHomeIcon.className = isHidden ? "fas fa-chevron-down text-xs" : "fas fa-chevron-up text-xs";
-    mobileDashMenu.classList.add("hidden");
-    mobileDashIcon.className = "fas fa-chevron-down text-xs";
-  });
-
-  mobileDashBtn?.addEventListener("click", e => {
-    e.stopPropagation();
-    const isHidden = mobileDashMenu.classList.toggle("hidden");
-    mobileDashIcon.className = isHidden ? "fas fa-chevron-down text-xs" : "fas fa-chevron-up text-xs";
-    mobileHomeMenu.classList.add("hidden");
-    mobileHomeIcon.className = "fas fa-chevron-down text-xs";
-  });
-
-  /* ===============================
-     MOBILE MENU TOGGLE WITH HAMBURGER/CLOSE ICON
-  =============================== */
-  const mobileBtn = document.getElementById("mobileBtn");
-  const mobileIcon = document.getElementById("mobileIcon");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  mobileBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isHidden = mobileMenu.classList.toggle("hidden");
-    
-    // Toggle between hamburger and close icons
-    if (isHidden) {
-      mobileIcon.className = "fas fa-bars";
-    } else {
-      mobileIcon.className = "fas fa-times";
-      
-      // Close all mobile dropdowns when opening menu
-      mobileHomeMenu?.classList.add("hidden");
-      mobileDashMenu?.classList.add("hidden");
-      if (mobileHomeIcon) mobileHomeIcon.className = "fas fa-chevron-down text-xs";
-      if (mobileDashIcon) mobileDashIcon.className = "fas fa-chevron-down text-xs";
-    }
-  });
-
-  // Close mobile menu when clicking a link (optional)
-  const mobileLinks = mobileMenu?.querySelectorAll('a');
-  mobileLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add("hidden");
-      mobileIcon.className = "fas fa-bars";
-      
-      // Close all mobile dropdowns
-      mobileHomeMenu?.classList.add("hidden");
-      mobileDashMenu?.classList.add("hidden");
-      if (mobileHomeIcon) mobileHomeIcon.className = "fas fa-chevron-down text-xs";
-      if (mobileDashIcon) mobileDashIcon.className = "fas fa-chevron-down text-xs";
-    });
-  });
-
-  /* ===============================
-     CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
-  =============================== */
-  document.addEventListener("click", (e) => {
-    // Don't close if clicking inside mobile menu or mobile button
-    if (mobileMenu?.contains(e.target) || mobileBtn?.contains(e.target)) {
-      return;
-    }
-    
-    homeMenu?.classList.add("hidden");
-    dashMenu?.classList.add("hidden");
-    mobileHomeMenu?.classList.add("hidden");
-    mobileDashMenu?.classList.add("hidden");
-    if (mobileHomeIcon) mobileHomeIcon.className = "fas fa-chevron-down text-xs";
-    if (mobileDashIcon) mobileDashIcon.className = "fas fa-chevron-down text-xs";
-    
-    // Close mobile menu when clicking outside
-    if (!mobileBtn?.contains(e.target)) {
-      mobileMenu?.classList.add("hidden");
-      if (mobileIcon) mobileIcon.className = "fas fa-bars";
-    }
-  });
-
-  /* ===============================
-     DARK MODE - FIXED FOR DEFAULT LIGHT THEME
+     DARK MODE TOGGLE FUNCTIONALITY
   =============================== */
   const darkToggle = document.getElementById("darkToggle");
   const mobileDarkToggle = document.getElementById("mobileDarkToggle");
   const darkIcon = document.getElementById("darkIcon");
   const mobileDarkIcon = document.getElementById("mobileDarkIcon");
-  
-  // FORCE LIGHT THEME BY DEFAULT - Remove any saved dark theme
-  localStorage.setItem('theme', 'light');
-  document.documentElement.classList.remove('dark');
-  
-  function updateThemeIcons(isDark) {
-    if (darkIcon) {
-      darkIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-    }
-    if (mobileDarkIcon) {
-      mobileDarkIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-    }
+
+  function updateThemeIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (darkIcon) darkIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+    if (mobileDarkIcon) mobileDarkIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
   }
-  
-  // Initialize with light theme
-  updateThemeIcons(false);
 
   function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark');
-    
-    if (isDark) {
-      localStorage.setItem('theme', 'dark');
-      updateThemeIcons(true);
-    } else {
-      localStorage.setItem('theme', 'light');
-      updateThemeIcons(false);
-    }
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeIcons();
   }
 
-  darkToggle?.addEventListener('click', toggleTheme);
-  mobileDarkToggle?.addEventListener('click', toggleTheme);
- 
-  
+  // Set initial icons based on current theme
+  updateThemeIcons();
+
+  if (darkToggle) darkToggle.addEventListener('click', toggleTheme);
+  if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleTheme);
+
   /* ===============================
      RTL MODE
   =============================== */
@@ -351,11 +199,143 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileRtlToggle = document.getElementById("mobileRtlToggle");
 
   function toggleRTL() {
-    document.documentElement.dir =
-      document.documentElement.dir === "rtl" ? "ltr" : "rtl";
+    document.documentElement.dir = document.documentElement.dir === "rtl" ? "ltr" : "rtl";
   }
 
-  rtlToggle?.addEventListener("click", toggleRTL);
-  mobileRtlToggle?.addEventListener("click", toggleRTL);
+  if (rtlToggle) rtlToggle.addEventListener("click", toggleRTL);
+  if (mobileRtlToggle) mobileRtlToggle.addEventListener("click", toggleRTL);
 
+  /* ===============================
+     DROPDOWNS & MOBILE MENU (your existing code)
+  =============================== */
+  const homeBtn = document.getElementById("homeBtn");
+  const homeMenu = document.getElementById("homeMenu");
+  const dashBtn = document.getElementById("dashBtn");
+  const dashMenu = document.getElementById("dashMenu");
+
+  function closeAllDropdowns() {
+    if (homeMenu) homeMenu.classList.add('hidden');
+    if (dashMenu) dashMenu.classList.add('hidden');
+    if (mobileHomeMenu) mobileHomeMenu.classList.add('hidden');
+    if (mobileDashMenu) mobileDashMenu.classList.add('hidden');
+    if (mobileHomeIcon) mobileHomeIcon.className = 'fas fa-chevron-down text-xs';
+    if (mobileDashIcon) mobileDashIcon.className = 'fas fa-chevron-down text-xs';
+  }
+
+  if (homeBtn && homeMenu) {
+    homeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = homeMenu.classList.contains('hidden');
+      closeAllDropdowns();
+      if (isHidden) homeMenu.classList.remove('hidden');
+    });
+  }
+
+  if (dashBtn && dashMenu) {
+    dashBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = dashMenu.classList.contains('hidden');
+      closeAllDropdowns();
+      if (isHidden) dashMenu.classList.remove('hidden');
+    });
+  }
+
+  const mobileHomeBtn = document.getElementById("mobileHomeBtn");
+  const mobileHomeMenu = document.getElementById("mobileHomeMenu");
+  const mobileHomeIcon = document.getElementById("mobileHomeIcon");
+  const mobileDashBtn = document.getElementById("mobileDashBtn");
+  const mobileDashMenu = document.getElementById("mobileDashMenu");
+  const mobileDashIcon = document.getElementById("mobileDashIcon");
+
+  if (mobileHomeBtn && mobileHomeMenu) {
+    mobileHomeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = mobileHomeMenu.classList.contains('hidden');
+      if (mobileDashMenu) mobileDashMenu.classList.add('hidden');
+      if (mobileDashIcon) mobileDashIcon.className = 'fas fa-chevron-down text-xs';
+      
+      mobileHomeMenu.classList.toggle('hidden');
+      mobileHomeIcon.className = isHidden ? 'fas fa-chevron-up text-xs' : 'fas fa-chevron-down text-xs';
+    });
+  }
+
+  if (mobileDashBtn && mobileDashMenu) {
+    mobileDashBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = mobileDashMenu.classList.contains('hidden');
+      if (mobileHomeMenu) mobileHomeMenu.classList.add('hidden');
+      if (mobileHomeIcon) mobileHomeIcon.className = 'fas fa-chevron-down text-xs';
+      
+      mobileDashMenu.classList.toggle('hidden');
+      mobileDashIcon.className = isHidden ? 'fas fa-chevron-up text-xs' : 'fas fa-chevron-down text-xs';
+    });
+  }
+
+  const mobileBtn = document.getElementById("mobileBtn");
+  const mobileIcon = document.getElementById("mobileIcon");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (mobileBtn && mobileIcon && mobileMenu) {
+    mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      mobileIcon.className = isHidden ? 'fas fa-times' : 'fas fa-bars';
+      
+      if (!isHidden) {
+        if (mobileHomeMenu) mobileHomeMenu.classList.add('hidden');
+        if (mobileDashMenu) mobileDashMenu.classList.add('hidden');
+        if (mobileHomeIcon) mobileHomeIcon.className = 'fas fa-chevron-down text-xs';
+        if (mobileDashIcon) mobileDashIcon.className = 'fas fa-chevron-down text-xs';
+      }
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileIcon.className = 'fas fa-bars';
+      });
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.relative') && !e.target.closest('#mobileBtn') && 
+        !e.target.closest('#mobileHomeBtn') && !e.target.closest('#mobileDashBtn')) {
+      closeAllDropdowns();
+    }
+    
+    if (mobileMenu && !mobileMenu.contains(e.target) && !mobileBtn?.contains(e.target)) {
+      mobileMenu.classList.add('hidden');
+      if (mobileIcon) mobileIcon.className = 'fas fa-bars';
+    }
+  });
+
+  /* ===============================
+     ACTIVE LINK HIGHLIGHT
+  =============================== */
+  const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+  const homePages = ['', 'index.html', 'home.html', 'home1.html', 'home2.html'];
+  const isHomePage = homePages.includes(currentPage);
+
+  document.querySelectorAll('.nav-link, .home-link, #homeBtn, #mobileHomeBtn, #dashBtn, #mobileDashBtn')
+    .forEach(el => el?.classList.remove('text-pink-600', 'font-bold'));
+
+  if (isHomePage) {
+    if (homeBtn) homeBtn.classList.add('text-pink-600', 'font-bold');
+    if (mobileHomeBtn) mobileHomeBtn.classList.add('text-pink-600', 'font-bold');
+  }
+
+  document.querySelectorAll('.home-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || (currentPage === 'index.html' && href === 'index.html')) {
+      link.classList.add('text-pink-600', 'font-bold');
+    }
+  });
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage) {
+      link.classList.add('text-pink-600', 'font-bold');
+    }
+  });
 });

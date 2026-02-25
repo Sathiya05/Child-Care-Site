@@ -217,148 +217,54 @@
     <!-- navbar placeholder -->
     <div id="navbar"></div>
 
-    <!-- ========== HERO – DAILY CARE, WITH DARK MODE & HOVER ========== -->
-    <section class="relative bg-pink-500 dark:bg-pink-700 overflow-hidden pt-20 pb-28 md:pt-28 md:pb-36">
-        <!-- BACKGROUND IMAGE with dark overlay -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-r from-pink-300/90 to-pink-800/90 dark:from-pink-900/80 dark:to-pink-800/80 z-10"></div>
-            <img src="images\bg img.avif" 
-                 alt="Warm daycare classroom" 
-                 class="w-full h-full object-cover">
-        </div>
-        
-        <!-- soft abstract shapes – dark mode adjusted -->
-        <div class="absolute inset-0 overflow-hidden z-20">
-            <svg class="absolute left-0 top-0 w-64 h-64 text-pink-200 dark:text-pink-300 opacity-40" fill="currentColor" viewBox="0 0 100 100">
-                <circle cx="10" cy="10" r="40"/>
-            </svg>
-            <svg class="absolute right-0 bottom-0 w-80 h-80 text-pink-300 dark:text-pink-400 opacity-30" fill="currentColor" viewBox="0 0 100 100">
-                <polygon points="50,0 100,50 50,100 0,50"/>
-            </svg>
-            <i class="fas fa-cloud absolute text-pink-300 dark:text-pink-200 text-7xl top-20 right-20 opacity-30 float"></i>
-            <i class="fas fa-smile absolute text-pink-400 dark:text-pink-300 text-6xl bottom-10 left-10 opacity-30 wiggle"></i>
-            <i class="fas fa-balloon absolute text-pink-400 dark:text-pink-300 text-5xl top-40 left-20 opacity-20 float" style="animation-delay: 1s;"></i>
-            <i class="fas fa-star absolute text-pink-300 dark:text-pink-200 text-5xl bottom-40 right-20 opacity-25 animate-pulse"></i>
+    <!-- ========== SIMPLE & ELEGANT HERO ========== -->
+<section class="relative h-[90vh] flex items-center justify-center overflow-hidden">
+
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="images/bg img.avif"
+             alt="Warm daycare classroom"
+             class="w-full h-full object-cover">
+        <!-- Dark Overlay for Clear Text -->
+        <div class="absolute inset-0 bg-black/60 dark:bg-black/70"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            A Safe & Loving
+            <span class="text-pink-400">Daily Care</span>
+            Experience
+        </h1>
+
+        <p class="mt-6 text-lg md:text-xl text-gray-200">
+            From drop-off to pickup, we create joyful routines filled with 
+            learning, play, and care — every single day.
+        </p>
+
+        <!-- Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#"
+               class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg transition duration-300">
+               Enroll Now
+            </a>
+
+            <a href="#"
+               class="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-full font-semibold backdrop-blur-md border border-white/40 transition duration-300">
+               View Programs
+            </a>
         </div>
 
-        <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                <!-- left: daily care messaging -->
-                <div class="flex-1 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 bg-pink-100/90 dark:bg-pink-900/80 backdrop-blur-sm rounded-full px-5 py-2.5 text-pink-700 dark:text-pink-300 border border-pink-300 dark:border-pink-700 mb-6 shadow-sm hover:scale-105 transition-transform duration-300">
-                        <i class="fas fa-sun text-pink-600 dark:text-pink-400 text-lg"></i>
-                        <span class="text-sm font-bold uppercase tracking-wide">daycare • daily rhythms</span>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white leading-tight">
-                        A day full of 
-                        <span class="relative inline-block text-white dark:text-pink-400">
-                            wonder, rest & play
-                        </span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-700 dark:text-gray-200 mt-6 max-w-2xl lg:mx-0 mx-auto font-medium drop-shadow-sm">
-                        Every day is a gentle rhythm of learning, connection, and joy. <br class="hidden sm:block"> 
-                        <span class="font-semibold text-white dark:text-pink-400">From drop‑off to pickup</span> — we make every moment count.
-                    </p>
-                    
-                    <!-- daily schedule snapshot – hover effect -->
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-10">
-                        <div class="flex items-center gap-3 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm px-6 py-3 rounded-2xl border-2 border-pink-200 dark:border-pink-700 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-clock text-pink-600 dark:text-pink-400 text-xl"></i>
-                            <div class="text-left">
-                                <p class="text-xs text-gray-500 dark:text-gray-400">typical day</p>
-                                <p class="text-sm font-bold text-gray-800 dark:text-white">7:00 AM – 5:30 PM</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm px-6 py-3 rounded-2xl border-2 border-pink-200 dark:border-pink-700 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-people-arrows text-pink-600 dark:text-pink-400 text-xl"></i>
-                            <div class="text-left">
-                                <p class="text-xs text-gray-500 dark:text-gray-400">our ratio</p>
-                                <p class="text-sm font-bold text-gray-800 dark:text-white">1:4 (infant) to 1:8</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- trust signals – parent quotes -->
-                    <div class="mt-12 flex flex-wrap justify-center lg:justify-start gap-6">
-                        <div class="flex -space-x-2">
-                            <img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-700 shadow-md hover:scale-110 hover:z-10 transition-all" src="images/img7.webp" alt="parent">
-                            <img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-700 shadow-md hover:scale-110 hover:z-10 transition-all" src="images/img9.webp" alt="parent">
-                            <img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-700 shadow-md hover:scale-110 hover:z-10 transition-all" src="images/ig8.webp" alt="parent">
-                            <img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-700 shadow-md hover:scale-110 hover:z-10 transition-all" src="images/img6.avif" alt="parent">
-                        </div>
-                        <div class="text-sm text-gray-700 dark:text-gray-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm hover:bg-pink-50 dark:hover:bg-pink-900/60 transition-colors">
-                            <span class="font-bold text-pink-600 dark:text-pink-400">150+ families</span> trust us daily
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- right: visual of daily rhythm – illustrated schedule with hover -->
-                <div class="flex-1 flex justify-center lg:justify-end">
-                    <div class="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-3xl p-6 shadow-2xl border-2 border-pink-100 dark:border-pink-800 w-full max-w-md hover:shadow-3xl hover:scale-[1.02] transition-all duration-500">
-                     
-                        <!-- daily timeline -->
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-2 rounded-2xl transition-all">
-                                <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center text-pink-600 dark:text-pink-400">
-                                    <i class="fas fa-sun text-2xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">7:00 – 8:30</p>
-                                    <p class="font-semibold text-gray-800 dark:text-white">Welcome & free play</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-2 rounded-2xl transition-all">
-                                <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center text-pink-600 dark:text-pink-400">
-                                    <i class="fas fa-apple-alt text-2xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">8:30 – 9:00</p>
-                                    <p class="font-semibold text-gray-800 dark:text-white">Morning snack</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-2 rounded-2xl transition-all">
-                                <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center text-pink-600 dark:text-pink-400">
-                                    <i class="fas fa-paint-brush text-2xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">9:15 – 10:30</p>
-                                    <p class="font-semibold text-gray-800 dark:text-white">Art & sensory</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-2 rounded-2xl transition-all">
-                                <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center text-pink-600 dark:text-pink-400">
-                                    <i class="fas fa-leaf text-2xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">10:45 – 11:45</p>
-                                    <p class="font-semibold text-gray-800 dark:text-white">Outdoor play / nature</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-2 rounded-2xl transition-all">
-                                <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-2xl flex items-center justify-center text-pink-600 dark:text-pink-400">
-                                    <i class="fas fa-bed text-2xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">12:00 – 2:30</p>
-                                    <p class="font-semibold text-gray-800 dark:text-white">Lunch & rest time</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-5 bg-pink-50 dark:bg-pink-900/50 p-3 rounded-xl border border-pink-200 dark:border-pink-800 text-center hover:bg-pink-100 dark:hover:bg-pink-900/70 transition-colors">
-                            <p class="text-xs text-gray-600 dark:text-gray-300 flex items-center justify-center gap-1">
-                                <i class="fas fa-heart text-pink-600 dark:text-pink-400"></i> individualized routines for infants/toddlers
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+
+</section>
+
 
     <!-- ========== 1. DAILY ACTIVITIES & LEARNING ZONES – with dark mode & hover ========== -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="text-center">
-            <span class="text-pink-600 dark:text-pink-400 text-sm font-bold uppercase tracking-wider bg-pink-100 dark:bg-pink-900/60 px-5 py-2 rounded-full inline-block mb-4 hover:scale-105 transition-transform"> every day looks like</span>
+            <span class="text-black dark:text-white text-sm font-bold uppercase tracking-wider bg-pink-100 dark:bg-pink-900/60 px-5 py-2 rounded-full inline-block mb-4 hover:scale-105 transition-transform"> every day looks like</span>
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Where learning feels like play</h2>
             <p class="text-gray-600 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Our daily programs are built around curiosity, connection, and the magic of childhood.</p>
         </div>
@@ -407,18 +313,7 @@
             </div>
         </div>
         
-        <!-- daily rhythm note – pink-600 accent -->
-        <div class="mt-12 bg-pink-50 dark:bg-pink-900/40 rounded-3xl p-6 border-2 border-pink-200 dark:border-pink-800 flex flex-col sm:flex-row items-center justify-between hover:shadow-xl transition-shadow">
-            <div class="flex items-center gap-4">
-                <div class="w-14 h-14 bg-pink-600 dark:bg-pink-700 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-                    <i class="fas fa-heart text-white text-2xl"></i>
-                </div>
-                <p class="text-gray-700 dark:text-gray-200 font-medium max-w-md"><span class="font-bold text-pink-600 dark:text-pink-400">Every child is unique.</span> We adapt our daily rhythm to their individual needs and cues.</p>
-            </div>
-            <a href="#" class="mt-3 sm:mt-0 text-pink-600 dark:text-pink-400 font-bold text-sm border-b-2 border-pink-600 dark:border-pink-500 pb-1 flex items-center gap-1 hover:gap-3 transition-all duration-300">
-                see sample schedules <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
+       
     </div>
 
     <!-- ========== 2. MILESTONES & DAILY MOMENTS – with dark mode & hover ========== -->
@@ -429,25 +324,25 @@
                 <div class="lg:w-1/2">
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-4">
-                            <div class="milestone-item bg-pink-50 dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
-                                <i class="fas fa-smile-beam text-pink-600 dark:text-pink-400 text-3xl mb-2"></i>
+                            <div class="milestone-item bg-white dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
+                                <i class="fas fa-smile-beam text-black dark:text-white text-3xl mb-2"></i>
                                 <span class="text-lg font-bold text-gray-800 dark:text-white">first smile</span>
                                 <span class="text-xs text-gray-500 dark:text-gray-400">infant</span>
                             </div>
-                            <div class="milestone-item bg-pink-50 dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
-                                <i class="fas fa-egg text-pink-600 dark:text-pink-400 text-3xl mb-2"></i>
+                            <div class="milestone-item bg-white dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
+                                <i class="fas fa-egg text-black dark:text-white text-3xl mb-2"></i>
                                 <span class="text-lg font-bold text-gray-800 dark:text-white">first word</span>
                                 <span class="text-xs text-gray-500 dark:text-gray-400">toddler</span>
                             </div>
                         </div>
                         <div class="space-y-4 mt-8">
-                            <div class="milestone-item bg-pink-50 dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
-                                <i class="fas fa-pencil text-pink-600 dark:text-pink-400 text-3xl mb-2"></i>
+                            <div class="milestone-item bg-white dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
+                                <i class="fas fa-pencil text-black dark:text-white text-3xl mb-2"></i>
                                 <span class="text-lg font-bold text-gray-800 dark:text-white">first scribble</span>
                                 <span class="text-xs text-gray-500 dark:text-gray-400">preschool</span>
                             </div>
-                            <div class="milestone-item bg-pink-50 dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
-                                <i class="fas fa-hand-peace text-pink-600 dark:text-pink-400 text-3xl mb-2"></i>
+                            <div class="milestone-item bg-white dark:bg-pink-900/30 p-5 rounded-2xl border-2 border-pink-200 dark:border-pink-800 flex flex-col items-center hover:border-pink-600 dark:hover:border-pink-500">
+                                <i class="fas fa-hand-peace text-black dark:text-white text-3xl mb-2"></i>
                                 <span class="text-lg font-bold text-gray-800 dark:text-white">first friend</span>
                                 <span class="text-xs text-gray-500 dark:text-gray-400">pre-k</span>
                             </div>
@@ -456,7 +351,7 @@
                 </div>
                 <!-- right: celebration of small moments -->
                 <div class="lg:w-1/2">
-                    <span class="text-pink-600 dark:text-pink-400 text-sm font-bold uppercase tracking-wider"> tiny triumphs</span>
+                    <span class="text-black dark:text-white text-sm font-bold uppercase tracking-wider"> tiny triumphs</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mt-3">We celebrate the little things</h2>
                     <p class="text-gray-600 dark:text-gray-300 text-lg mt-5">A first step, a shared toy, a butterfly spotted on the playground. Our teachers notice and nurture every milestone.</p>
                     <div class="mt-8 flex flex-wrap gap-4">
@@ -482,7 +377,7 @@
     <div class="bg-gradient-to-b from-pink-50 to-white dark:from-[#1f1b26] dark:to-[#18141c] py-20 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <span class="text-pink-600 dark:text-pink-400 text-sm font-bold uppercase tracking-wider bg-white dark:bg-gray-800 px-5 py-2 rounded-full shadow-md inline-block mb-4 hover:scale-105 transition-transform"> care essentials</span>
+                <span class="text-black dark:text-white text-sm font-bold uppercase tracking-wider bg-white dark:bg-gray-800 px-5 py-2 rounded-full shadow-md inline-block mb-4 hover:scale-105 transition-transform"> care essentials</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">The foundation of our day</h2>
                 <p class="text-gray-600 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Meals, rest, and safety — handled with expertise and love.</p>
             </div>
@@ -535,70 +430,70 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="bg-white dark:bg-[#1f1b26] rounded-4xl p-8 md:p-12 border-2 border-pink-200 dark:border-pink-800 shadow-2xl hover:shadow-3xl transition-shadow">
             <div class="text-center">
-                <span class="text-pink-600 dark:text-pink-400 text-sm font-bold uppercase tracking-wider bg-pink-100 dark:bg-pink-900/60 px-5 py-2 rounded-full inline-block mb-4 hover:scale-105 transition-transform"> sample day</span>
+                <span class="text-black dark:text-white text-sm font-bold uppercase tracking-wider bg-pink-100 dark:bg-pink-900/60 px-5 py-2 rounded-full inline-block mb-4 hover:scale-105 transition-transform"> sample day</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">A gentle rhythm, every day</h2>
                 <p class="text-gray-600 dark:text-gray-400 mt-2">Infant, toddler, and preschool schedules are adapted, but here's our beautiful flow.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">7:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">7:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Welcome & hello</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Gentle arrivals, breakfast, and choice time</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">9:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">9:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Morning meeting</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Songs, calendar, and stories together</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">10:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">10:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Discovery time</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Art, sensory, blocks, or dramatic play</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">11:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">11:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Outdoor adventures</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Climbing, bikes, gardening, mud kitchen</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">12:15</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">12:15</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Lunch together</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Family-style dining, conversation</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">1:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">1:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Rest & recharge</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Quiet time, books, or naps</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">3:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">3:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Afternoon snack</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Fresh fruit, yogurt, whole grains</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">4:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">4:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Free play & enrichment</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Music, Spanish, or yoga</p>
                     </div>
                 </div>
                 <div class="flex gap-4 timeline-item hover:bg-pink-50 dark:hover:bg-pink-900/30 p-3 rounded-xl transition-all">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-100 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 font-bold">5:00</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-200 dark:bg-pink-900/70 rounded-xl flex items-center justify-center text-black dark:text-pink-400 font-bold">5:00</div>
                     <div>
                         <h4 class="font-bold text-gray-800 dark:text-white">Cozy goodbyes</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Quiet activities, pickup & daily recap</p>

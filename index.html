@@ -15,6 +15,7 @@
       darkMode: "class",
     };
   </script>
+  
 </head>
  <body>
     <!-- navbar -->
@@ -23,71 +24,70 @@
 
 
 
-
-<!-- HERO SECTION -->
-<section class="mt-10 p-10 overflow-hidden relative 
+<section class="mt-10 py-20 overflow-hidden relative 
                 bg-white dark:bg-gray-900 
-                transition-colors duration-500">
-
-  <!-- Background Image -->
+                transition-colors duration-500 dark-overlay">
+  <!-- Background image (now with dark overlay via ::before) -->
   <div class="absolute inset-0 z-0">
-    <img src="images/img1.avif" 
+    <img src="images\bg1.avif" 
          class="w-full h-full object-cover"
-         alt="Hero Background">
-    <div class="absolute inset-0 bg-pink-600/50 dark:bg-pink-900/60"></div>
+         alt="Soft nature background">
   </div>
 
-  <div class="container mx-auto px-4 py-8 md:py-16 lg:py-20 relative z-10">
+  <!-- all content inside overlay-content to appear above the dark layer -->
+  <div class="container mx-auto px-4 py-8 md:py-16 lg:py-20 relative z-10 overlay-content">
     <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
 
-      <!-- LEFT CONTENT -->
+      <!-- LEFT CONTENT – now with extra visibility because of dark overlay + darker buttons -->
       <div class="lg:w-1/2 text-center lg:text-left">
 
+        <!-- badge: dark background, white text, fully readable -->
         <span class="inline-block px-4 py-1 rounded-full 
-                     bg-pink-100 dark:bg-pink-900/40 
-                     text-pink-700 dark:text-pink-400 
-                     font-semibold text-sm mb-4">
+                     bg-black/50 backdrop-blur-sm
+                     text-white font-semibold text-sm mb-4 border border-white/40">
           <i class="fas fa-star mr-1"></i> Trusted by 500+ Families
         </span>
 
+        <!-- headline: pure white, crisp -->
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 
-                   text-white">
+                   text-white drop-shadow-lg">
           Nurturing Young Minds With
-          <span class="text-transparent bg-clip-text 
-                       bg-white
-                       dark:from-pink-700 dark:to-pink-800">
+          <span class="text-white">
             Love & Care
           </span>
         </h1>
 
+        <!-- paragraph: white with slight shadow for extra legibility -->
         <p class="text-lg md:text-xl 
-                  text-white/90
-                  mb-8 leading-relaxed transition-colors duration-300">
+                  text-white/95
+                  mb-8 leading-relaxed drop-shadow-md">
           At GrowwCare, we provide a safe, stimulating, and loving environment where 
           children can learn, grow, and thrive. Our certified caregivers ensure 
           every child receives personalized attention and early education.
         </p>
 
-        <!-- Buttons -->
+        <!-- Buttons – darkened backgrounds, high contrast, readable -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
 
+          <!-- primary: dark with blur, white text, no pink -->
           <a href="about.html"
-            class="px-8 py-4 bg-pink-600 hover:bg-pink-700 
+            class="px-8 py-4 bg-black/50 backdrop-blur-sm hover:bg-black/70
                    text-white font-semibold rounded-xl 
-                   shadow-lg hover:shadow-2xl 
+                   shadow-xl hover:shadow-2xl 
                    hover:scale-105 active:scale-95
-                   transition-all duration-300 text-center">
+                   transition-all duration-300 text-center border border-white/50">
             <i class="fas fa-child mr-2"></i> Learn About US
           </a>
 
+          <!-- secondary: dark/transparent with strong white border -->
           <a href="services.html"
             class="px-8 py-4 
-                   bg-white/20 backdrop-blur-sm
-                   hover:bg-white/30
+                   bg-black/30 backdrop-blur-sm
+                   hover:bg-black/60
                    text-white 
                    font-semibold rounded-xl 
-                   border-2 border-white/50
-                   shadow-md hover:shadow-xl 
+                   border-2 border-white/80
+                   shadow-lg hover:shadow-xl 
                    hover:scale-105 active:scale-95
                    transition-all duration-300 text-center">
             <i class="fas fa-play-circle mr-2"></i> Watch Our Tour
@@ -95,25 +95,15 @@
 
         </div>
 
-
-
       </div>
 
-      <!-- RIGHT IMAGE - Now using a different image since img1.avif is used as background -->
-      <div class="lg:w-1/2">
-        <div class="rounded-3xl overflow-hidden shadow-2xl 
-                    hover:scale-105 transition-transform duration-500
-                    border-4 border-white/30">
-
-          <img src="images\img1.avif"
-               class="w-full h-72 md:h-96 lg:h-[500px] object-cover"
-               alt="Children Playing">
-        </div>
-      </div>
+     
 
     </div>
   </div>
 </section>
+
+
 
 <!-- Dark Mode Script -->
 <script>
@@ -275,8 +265,8 @@
                   hover:shadow-2xl hover:-translate-y-2
                   transition-all duration-300">
 
-        <div class="bg-pink-100 dark:bg-pink-900/40 
-                    text-pink-600 dark:text-pink-400 
+        <div class="bg-white dark:bg-pink-900/40 
+                    text-black dark:text-pink-400 
                     rounded-full p-4 mb-4 
                     transition-colors duration-300">
 
@@ -308,8 +298,8 @@
                   hover:shadow-2xl hover:-translate-y-2
                   transition-all duration-300">
 
-        <div class="bg-pink-100 dark:bg-pink-900/40 
-                    text-pink-600 dark:text-pink-400 
+       <div class="bg-white dark:bg-pink-900/40 
+                    text-black dark:text-pink-400 
                     rounded-full p-4 mb-4 
                     transition-colors duration-300">
 
@@ -341,8 +331,8 @@ We offer convenient timings to fit your family’s busy schedule.        </p>
                   hover:shadow-2xl hover:-translate-y-2
                   transition-all duration-300">
 
-        <div class="bg-pink-100 dark:bg-pink-900/40 
-                    text-pink-600 dark:text-pink-400 
+       <div class="bg-white dark:bg-pink-900/40 
+                    text-black dark:text-pink-400 
                     rounded-full p-4 mb-4 
                     transition-colors duration-300">
 
@@ -372,8 +362,8 @@ Certified professionals dedicated to nurturing your child’s growth.        </p
                   hover:shadow-2xl hover:-translate-y-2
                   transition-all duration-300">
 
-        <div class="bg-pink-100 dark:bg-pink-900/40 
-                    text-pink-600 dark:text-pink-400 
+        <div class="bg-white dark:bg-pink-900/40 
+                    text-black dark:text-pink-400 
                     rounded-full p-4 mb-4 
                     transition-colors duration-300">
 
@@ -423,7 +413,7 @@ Fun and engaging programs to stimulate learning and creativity.       </p>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
       <!-- Caregiver Card -->
-      <div class="group bg-pink-50 dark:bg-gray-800 
+      <div class="group bg-white dark:bg-gray-800 
                   rounded-2xl overflow-hidden
                   shadow-md hover:shadow-2xl
                   hover:-translate-y-2
@@ -454,7 +444,7 @@ Fun and engaging programs to stimulate learning and creativity.       </p>
       </div>
 
       <!-- Card 2 -->
-      <div class="group bg-pink-50 dark:bg-gray-800 
+      <div class="group bg-white dark:bg-gray-800 
                   rounded-2xl overflow-hidden
                   shadow-md hover:shadow-2xl
                   hover:-translate-y-2
@@ -483,7 +473,7 @@ Fun and engaging programs to stimulate learning and creativity.       </p>
       </div>
 
       <!-- Card 3 -->
-      <div class="group bg-pink-50 dark:bg-gray-800 
+      <div class="group bg-white dark:bg-gray-800 
                   rounded-2xl overflow-hidden
                   shadow-md hover:shadow-2xl
                   hover:-translate-y-2
@@ -512,7 +502,7 @@ Fun and engaging programs to stimulate learning and creativity.       </p>
       </div>
 
       <!-- Card 4 -->
-      <div class="group bg-pink-50 dark:bg-gray-800 
+      <div class="group bg-white dark:bg-gray-800 
                   rounded-2xl overflow-hidden
                   shadow-md hover:shadow-2xl
                   hover:-translate-y-2
@@ -797,7 +787,7 @@ Fun and engaging programs to stimulate learning and creativity.       </p>
 
 
 <section class="py-20 
-                bg-pink-600 
+                bg-pink-400 
                 dark:from-pink-700 dark:to-purple-800
                 transition-colors duration-500">
 
